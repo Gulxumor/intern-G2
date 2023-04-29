@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Wrapper } from "./style";
 import axios from "axios";
 import { LoadingOutlined } from "@ant-design/icons";
+import { notification } from "antd";
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const phoneRef = useRef();
@@ -14,19 +15,40 @@ const Login = () => {
   };
 
   const onAuth = () => {
-    const userValue = {
-      phone: phoneRef.current.input.value,
+    const { phoneNumber, password } = {
+      phoneNumber: `${phoneRef.current.input.value}`,
       password: passwordRef.current.input.value,
     };
+
+    if (!phoneNumber || !password) {
+      return notification.error({ message: "Please fill all the fields" });
+    }
+    setLoading(true);
     axios({
-      usr: `${process.env.REACT_APP_MAIN_URL}/user/sign-in`,
+      url: `${process.env.REACT_APP_MAIN_URL}/user/sign-in`,
       method: "POST",
       data: {
-        ...userValue,
+        phoneNumber: `+998${phoneNumber}`,
+        password,
       },
-    }).then((res) => console.log(res.data.data));
+    })
+      .then((res) => {
+        const { token, user } = res.data.data;
+        localStorage.setItem("token", token);
+        console.log(user);
+        setLoading(false);
+        return notification.success({ message: "Successfully logged in" });
+      })
+      .catch((res) => {
+        const response = res.data;
+        response.status === 409 &&
+          notification.error({
+            message: "User not found",
+            description: "Phone number or password is wrong",
+          });
+      });
   };
- 
+
   return (
     <Wrapper>
       <Wrapper.Container>
