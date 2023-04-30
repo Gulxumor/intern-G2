@@ -1,0 +1,35 @@
+import styled from 'styled-components';
+
+export const Wrapper = styled.div`
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+    border-radius: 17px;
+    background: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+    gap: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 6px 6px 7px;
+`
+
+export const Title = styled.div`
+    padding-top: 30px;
+    font-weight: 500;
+    font-size: 18px;
+`
+export const Image = styled.img`
+    width: 133px;
+    height: 192px;
+    margin-bottom: 30px;
+`
+
+
+
+export const gfrsdbf = styled.div``
+export const gferrbf = styled.div``
+export const gfhrbf = styled.div``
+

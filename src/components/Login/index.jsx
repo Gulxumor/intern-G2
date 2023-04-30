@@ -3,7 +3,9 @@ import { Wrapper } from "./style";
 import axios from "axios";
 import { LoadingOutlined } from "@ant-design/icons";
 import { notification } from "antd";
+import { useNotificationAPI } from "../../generic/NotificationAPI";
 const Login = () => {
+  const statusChecker = useNotificationAPI();
   const [loading, setLoading] = useState(false);
   const phoneRef = useRef();
   const passwordRef = useRef();
@@ -15,14 +17,27 @@ const Login = () => {
   };
 
   const onAuth = () => {
+    if (loading) return;
+
     const { phoneNumber, password } = {
       phoneNumber: `${phoneRef.current.input.value}`,
       password: passwordRef.current.input.value,
     };
 
-    if (!phoneNumber || !password) {
-      return notification.error({ message: "Please fill all the fields" });
-    }
+    if (!phoneNumber || !password) return statusChecker(400);
+
+    // Kiritilayotgan raqamlarni formatlash uchun:
+    // const formatPhoneNumber = (phoneNumber) => {
+    //   const formattedPhoneNumber = `+998${phoneNumber.slice(
+    //     0,
+    //     2
+    //   )} ${phoneNumber.slice(2, 5)} - ${phoneNumber.slice(
+    //     5,
+    //     7
+    //   )} - ${phoneNumber.slice(7, 9)}`;
+    //   return formattedPhoneNumber;
+    // };
+
     setLoading(true);
     axios({
       url: `${process.env.REACT_APP_MAIN_URL}/user/sign-in`,
@@ -35,17 +50,15 @@ const Login = () => {
       .then((res) => {
         const { token, user } = res.data.data;
         localStorage.setItem("token", token);
+        localStorage.setItem("userData", JSON.stringify(user));
         console.log(user);
         setLoading(false);
         return notification.success({ message: "Successfully logged in" });
       })
       .catch((res) => {
-        const response = res.data;
-        response.status === 409 &&
-          notification.error({
-            message: "User not found",
-            description: "Phone number or password is wrong",
-          });
+        const status = res.response.status;
+        setLoading(false);
+        return statusChecker(status);
       });
   };
 

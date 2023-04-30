@@ -1,5 +1,7 @@
 import React from "react";
 import { MenuWrapper } from "../Style";
+import { useDispatch } from "react-redux";
+import { switchProfileModalVisibility } from "../../redux/modalSlice";
 import {
   SettingOutlined,
   TranslationOutlined,
@@ -7,11 +9,12 @@ import {
 } from "@ant-design/icons";
 
 const useDropDownApi = () => {
+  const dispatch = useDispatch();
   const navbarDropDown = () => {
     return [
       {
         label: (
-          <MenuWrapper>
+          <MenuWrapper onClick={() => dispatch(switchProfileModalVisibility())}>
             <SettingOutlined /> Setting
           </MenuWrapper>
         ),
