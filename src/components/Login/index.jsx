@@ -4,11 +4,15 @@ import axios from "axios";
 import { LoadingOutlined } from "@ant-design/icons";
 import { notification } from "antd";
 import { useNotificationAPI } from "../../generic/NotificationAPI";
+import useInput from "../../generic/InputAPI";
+
 const Login = () => {
+  const { phoneFormatter } = useInput();
   const statusChecker = useNotificationAPI();
   const [loading, setLoading] = useState(false);
   const phoneRef = useRef();
   const passwordRef = useRef();
+  const [phoneValue, setPhoneValue] = useState("");
 
   const onKeyDetect = (e) => {
     if (e.key === "Enter" || e.type === "click" || e.keyCode === 13) {
@@ -25,18 +29,6 @@ const Login = () => {
     };
 
     if (!phoneNumber || !password) return statusChecker(400);
-
-    // Kiritilayotgan raqamlarni formatlash uchun:
-    // const formatPhoneNumber = (phoneNumber) => {
-    //   const formattedPhoneNumber = `+998${phoneNumber.slice(
-    //     0,
-    //     2
-    //   )} ${phoneNumber.slice(2, 5)} - ${phoneNumber.slice(
-    //     5,
-    //     7
-    //   )} - ${phoneNumber.slice(7, 9)}`;
-    //   return formattedPhoneNumber;
-    // };
 
     setLoading(true);
     axios({
@@ -74,8 +66,10 @@ const Login = () => {
           bordered={false}
           placeholder="Tel raqam"
           type="number"
-          ref={phoneRef}
+          // ref={phoneRef}
           name="phoneNumber"
+          value={phoneValue}
+          onChange={(e) => setPhoneValue(phoneFormatter(e.target.value))}
         />
         <Wrapper.Password
           ref={passwordRef}
