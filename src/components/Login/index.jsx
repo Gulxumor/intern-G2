@@ -1,30 +1,33 @@
 import { useRef, useState } from "react";
 import { Wrapper } from "./style";
-import axios from "axios";
 import { LoadingOutlined } from "@ant-design/icons";
 import { notification } from "antd";
 import { useNotificationAPI } from "../../generic/NotificationAPI";
 import useInput from "../../generic/InputAPI";
+import { useNavigate } from "react-router-dom";
+import { useSignIn } from "react-auth-kit";
+import useAxios from "../../hooks/useAxios";
 
 const Login = () => {
+  const axios = useAxios();
+  const signIn = useSignIn();
   const { phoneFormatter } = useInput();
+  const [phoneValue, setPhoneValue] = useState("");
   const statusChecker = useNotificationAPI();
   const [loading, setLoading] = useState(false);
-  const phoneRef = useRef();
   const passwordRef = useRef();
-  const [phoneValue, setPhoneValue] = useState("");
+  const navigate = useNavigate();
 
   const onKeyDetect = (e) => {
     if (e.key === "Enter" || e.type === "click" || e.keyCode === 13) {
       return onAuth();
     }
   };
-
   const onAuth = () => {
     if (loading) return;
 
     const { phoneNumber, password } = {
-      phoneNumber: `${phoneRef.current.input.value}`,
+      phoneNumber: phoneValue.replace(/[^\d]/g, ""),
       password: passwordRef.current.input.value,
     };
 
@@ -32,9 +35,9 @@ const Login = () => {
 
     setLoading(true);
     axios({
-      url: `${process.env.REACT_APP_MAIN_URL}/user/sign-in`,
+      url: `/user/sign-in`,
       method: "POST",
-      data: {
+      body: {
         phoneNumber: `+998${phoneNumber}`,
         password,
       },
@@ -43,7 +46,13 @@ const Login = () => {
         const { token, user } = res.data.data;
         localStorage.setItem("token", token);
         localStorage.setItem("userData", JSON.stringify(user));
-        console.log(user);
+        signIn({
+          token: token,
+          expiresIn: 3600,
+          tokenType: `Bearer`,
+          authState: user,
+        });
+        navigate("/");
         setLoading(false);
         return notification.success({ message: "Successfully logged in" });
       })
@@ -62,14 +71,13 @@ const Login = () => {
           Biz har kuni kechagidan ko'ra yaxshiroq xizmat ko'rsatishga intilamiz.
         </Wrapper.Desc>
         <Wrapper.PhoneNumber
+          value={phoneValue}
+          // ref={phoneRef}
+          onChange={(e) => setPhoneValue(phoneFormatter(e.target.value))}
           addonBefore="+998"
           bordered={false}
           placeholder="Tel raqam"
-          type="number"
-          // ref={phoneRef}
           name="phoneNumber"
-          value={phoneValue}
-          onChange={(e) => setPhoneValue(phoneFormatter(e.target.value))}
         />
         <Wrapper.Password
           ref={passwordRef}

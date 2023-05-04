@@ -1,4 +1,4 @@
-import { message, notification } from "antd";
+import { notification } from "antd";
 
 const notFoundError = {
   message: "User not found",

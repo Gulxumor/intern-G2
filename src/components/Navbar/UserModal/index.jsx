@@ -1,4 +1,3 @@
-import { Modal } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { ModalWrapper, DisabledInputs, Avatar, Text } from "./style";
 import { switchProfileModalVisibility } from "../../../redux/modalSlice";

@@ -3,10 +3,12 @@ import { Outlet } from "react-router-dom";
 import useDropDownApi from "../../generic/DropDownApi";
 import { Wrapper } from "./style";
 import UserModal from "./UserModal";
+import { useAuthUser } from "react-auth-kit";
 
 const Navbar = () => {
+  const authedUser = useAuthUser();
   const { navbarDropDown } = useDropDownApi();
-  const storedUserData = JSON.parse(localStorage.getItem("userData"));
+  // const storedUserData = JSON.parse(localStorage.getItem("userData"));
   return (
     <>
       <Wrapper>
@@ -16,7 +18,7 @@ const Navbar = () => {
         <Wrapper.Right>
           <Dropdown trigger={["click"]} menu={{ items: navbarDropDown() }}>
             <Wrapper.Avatar>
-              {storedUserData.name[0].toUpperCase()}
+              {authedUser().name[0].toUpperCase()}
             </Wrapper.Avatar>
           </Dropdown>
         </Wrapper.Right>
