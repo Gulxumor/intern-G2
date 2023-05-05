@@ -1,7 +1,11 @@
 import React from "react";
 import { MenuWrapper } from "../Style";
 import { useDispatch } from "react-redux";
-import { switchProfileModalVisibility } from "../../redux/modalSlice";
+import {
+  switchLanguageModalVisibility,
+  switchProfileModalVisibility,
+  switchLogOutModalVisibility,
+} from "../../redux/modalSlice";
 import {
   SettingOutlined,
   TranslationOutlined,
@@ -22,7 +26,9 @@ const useDropDownApi = () => {
       },
       {
         label: (
-          <MenuWrapper>
+          <MenuWrapper
+            onClick={() => dispatch(switchLanguageModalVisibility())}
+          >
             <TranslationOutlined /> Change language
           </MenuWrapper>
         ),
@@ -30,7 +36,10 @@ const useDropDownApi = () => {
       },
       {
         label: (
-          <MenuWrapper isDanger>
+          <MenuWrapper
+            isDanger
+            onClick={() => dispatch(switchLogOutModalVisibility())}
+          >
             <LoginOutlined /> Log Out
           </MenuWrapper>
         ),

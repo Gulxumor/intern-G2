@@ -30,7 +30,8 @@ const Login = () => {
       phoneNumber: phoneValue.replace(/[^\d]/g, ""),
       password: passwordRef.current.input.value,
     };
-
+console.log(phoneNumber);
+console.log(password);
     if (!phoneNumber || !password) return statusChecker(400);
 
     setLoading(true);
