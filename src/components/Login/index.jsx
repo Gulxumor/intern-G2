@@ -47,12 +47,22 @@ console.log(password);
         const { token, user } = res.data.data;
         localStorage.setItem("token", token);
         localStorage.setItem("userData", JSON.stringify(user));
-        signIn({
-          token: token,
-          expiresIn: 3600,
-          tokenType: `Bearer`,
-          authState: user,
-        });
+        console.log(
+          signIn({
+            token: token,
+            expiresIn: 3600,
+            tokenType: `Bearer`,
+            authState: user,
+          })
+        );
+        if (
+          signIn({
+            token: token,
+            expiresIn: 3600,
+            tokenType: `Bearer`,
+            authState: user,
+          })
+        );
         navigate("/");
         setLoading(false);
         return notification.success({ message: "Successfully logged in" });

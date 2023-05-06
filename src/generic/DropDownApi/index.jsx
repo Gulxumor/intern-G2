@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import {
   switchLanguageModalVisibility,
   switchProfileModalVisibility,
-  switchLogOutModalVisibility,
 } from "../../redux/modalSlice";
 import {
   SettingOutlined,
@@ -14,7 +13,7 @@ import {
 
 const useDropDownApi = () => {
   const dispatch = useDispatch();
-  const navbarDropDown = () => {
+  const navbarDropDown = ({ logOutHandler }) => {
     return [
       {
         label: (
@@ -36,10 +35,7 @@ const useDropDownApi = () => {
       },
       {
         label: (
-          <MenuWrapper
-            isDanger
-            onClick={() => dispatch(switchLogOutModalVisibility())}
-          >
+          <MenuWrapper onClick={logOutHandler} isDanger>
             <LoginOutlined /> Log Out
           </MenuWrapper>
         ),

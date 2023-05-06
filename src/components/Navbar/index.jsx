@@ -1,16 +1,32 @@
-import { Dropdown } from "antd";
-import { Outlet } from "react-router-dom";
+import { Dropdown, Modal } from "antd";
+import { Outlet, useNavigate } from "react-router-dom";
 import useDropDownApi from "../../generic/DropDownApi";
 import { Wrapper } from "./style";
 import UserModal from "./UserModal";
-import { useAuthUser } from "react-auth-kit";
+import { useAuthUser, useSignOut } from "react-auth-kit";
 import LanguageModal from "./LanguageModal";
-import LogOutModal from "./LogOutModal";
+
+const { confirm } = Modal;
 
 const Navbar = () => {
+  const signOut = useSignOut();
+  const navigate = useNavigate();
   const authedUser = useAuthUser();
   const { navbarDropDown } = useDropDownApi();
-  // const storedUserData = JSON.parse(localStorage.getItem("userData"));
+
+  const logOutHandler = () => {
+    return confirm({
+      title: "Are u sure",
+      content: "this cant be undone after confirming",
+      okText: "Log Out",
+      okButtonProps: { danger: true },
+      onOk: () => {
+        signOut();
+        navigate("/login");
+      },
+    });
+  };
+
   return (
     <>
       <Wrapper>
@@ -18,7 +34,10 @@ const Navbar = () => {
           <Wrapper.Title>NIHOL</Wrapper.Title>
         </Wrapper.Left>
         <Wrapper.Right>
-          <Dropdown trigger={["click"]} menu={{ items: navbarDropDown() }}>
+          <Dropdown
+            trigger={["click"]}
+            menu={{ items: navbarDropDown(logOutHandler) }}
+          >
             <Wrapper.Avatar>
               {authedUser().name[0].toUpperCase()}
             </Wrapper.Avatar>
@@ -27,7 +46,6 @@ const Navbar = () => {
       </Wrapper>
       <UserModal />
       <LanguageModal />
-      <LogOutModal />
       <Outlet />
     </>
   );

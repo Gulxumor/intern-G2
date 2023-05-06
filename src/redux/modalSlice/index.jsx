@@ -5,7 +5,6 @@ const ModalSlice = createSlice({
   initialState: {
     profileModalVisibility: false,
     languageModalVisibility: false,
-    logOutModalVisibility: false,
   },
   reducers: {
     switchProfileModalVisibility(state) {
@@ -14,14 +13,10 @@ const ModalSlice = createSlice({
     switchLanguageModalVisibility(state) {
       state.languageModalVisibility = !state.languageModalVisibility;
     },
-    switchLogOutModalVisibility(state) {
-      state.languageModalVisibility = !state.languageModalVisibility;
-    },
   },
 });
 export default ModalSlice.reducer;
 export const {
   switchProfileModalVisibility,
   switchLanguageModalVisibility,
-  switchLogOutModalVisibility,
 } = ModalSlice.actions;
