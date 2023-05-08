@@ -1,8 +1,8 @@
 import { Image, Title, Wrapper } from "./style";
 
-const Card = ({ title, image }) => {
+const Card = ({ title, image, onClick }) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <Title>{title}</Title>
       <Image src={image} alt={title || "not found"} />
     </Wrapper>

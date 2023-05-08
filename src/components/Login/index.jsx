@@ -89,6 +89,7 @@ console.log(password);
           bordered={false}
           placeholder="Tel raqam"
           name="phoneNumber"
+          autoFocus
         />
         <Wrapper.Password
           ref={passwordRef}

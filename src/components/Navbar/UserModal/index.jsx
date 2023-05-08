@@ -14,7 +14,9 @@ const UserModal = () => {
       okButtonProps={{ disabled: true }}
       onCancel={() => dispatch(switchProfileModalVisibility())}
     >
-      <Avatar> {storedUserData.name[0].toUpperCase()}</Avatar>
+      <Avatar>
+        {storedUserData ? storedUserData?.name[0].toUpperCase() : "A"}
+      </Avatar>
       <Text> Name:</Text>
       <DisabledInputs disabled />
       <Text>Surname:</Text>

@@ -2,7 +2,7 @@ import React from "react";
 import { MenuWrapper } from "../Style";
 import { useDispatch } from "react-redux";
 import {
-  switchLanguageModalVisibility,
+  switchlocaleModalVisibility,
   switchProfileModalVisibility,
 } from "../../redux/modalSlice";
 import {
@@ -25,9 +25,7 @@ const useDropDownApi = () => {
       },
       {
         label: (
-          <MenuWrapper
-            onClick={() => dispatch(switchLanguageModalVisibility())}
-          >
+          <MenuWrapper onClick={() => dispatch(switchlocaleModalVisibility())}>
             <TranslationOutlined /> Change language
           </MenuWrapper>
         ),

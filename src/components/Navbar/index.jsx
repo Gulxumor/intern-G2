@@ -4,7 +4,7 @@ import useDropDownApi from "../../generic/DropDownApi";
 import { Wrapper } from "./style";
 import UserModal from "./UserModal";
 import { useAuthUser, useSignOut } from "react-auth-kit";
-import LanguageModal from "./LanguageModal";
+import LocaleModal from "./LocaleModal";
 
 const { confirm } = Modal;
 
@@ -36,7 +36,7 @@ const Navbar = () => {
         <Wrapper.Right>
           <Dropdown
             trigger={["click"]}
-            menu={{ items: navbarDropDown(logOutHandler) }}
+            menu={{ items: navbarDropDown({ logOutHandler }) }}
           >
             <Wrapper.Avatar>
               {authedUser().name[0].toUpperCase()}
@@ -45,7 +45,7 @@ const Navbar = () => {
         </Wrapper.Right>
       </Wrapper>
       <UserModal />
-      <LanguageModal />
+      <LocaleModal />
       <Outlet />
     </>
   );
