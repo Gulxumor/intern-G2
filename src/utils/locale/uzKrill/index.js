@@ -1,4 +1,21 @@
 export const uzKrill = {
+    modal: {
+        settings: "Созламалар",
+        change_lang: "Тилни ўзгартириш",
+        log_out: "Чиқиш",
+        profileModal: {
+            profile: "Профил",
+            name: "Исм ",
+            surname: "Фамилия ",
+            save: "Сақлаш",
+            change:"Ўзгартириш",
+        },
+        log_out_modal: {
+            warning: "Огоҳлантириш",
+            are_u_sure: "Ишончингиз комилми",
+            log_out: "Чиқиш ",
+        },
+    },
     home_page: {
         section_title: "Бўлимлар",
         all_users: "Барча мижозлар",
@@ -36,7 +53,7 @@ export const uzKrill = {
             booked_places: "Бронланган жойлар",
             edit: "Ўзгартириш",
             add: "Қўшиш",
-            room_is_empty: "Хона Бўш. qoshish tugmasini bosish orqali yangi odam qoshishingiz mumkin",
+            room_is_empty: "Хона Бўш. 'Қўшиш' тугмасини босиш орқали янги одам қўшишингиз мумкин",
             full_name: "Тўлиқ исм",
             birth_date: "Туғулган сана:",
             passport_number: "Пасспорт рақам:",

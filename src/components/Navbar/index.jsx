@@ -5,21 +5,24 @@ import { Wrapper } from "./style";
 import UserModal from "./UserModal";
 import { useAuthUser, useSignOut } from "react-auth-kit";
 import LocaleModal from "./LocaleModal";
+import { useTranslation } from "react-i18next";
 
 const { confirm } = Modal;
 
 const Navbar = () => {
   const signOut = useSignOut();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const authedUser = useAuthUser();
   const { navbarDropDown } = useDropDownApi();
 
   const logOutHandler = () => {
     return confirm({
-      title: "Are u sure",
-      content: "this cant be undone after confirming",
-      okText: "Log Out",
+      title: t("modal.log_out_modal.warning"),
+      content: t("modal.log_out_modal.are_u_sure"),
+      okText: t("modal.log_out"),
       okButtonProps: { danger: true },
+      cancelText: t("empty_places.information.cancel"),
       onOk: () => {
         signOut();
         navigate("/login");

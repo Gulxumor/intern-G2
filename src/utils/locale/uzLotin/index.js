@@ -1,6 +1,22 @@
 export const uzLotin = {
+    modal: {
+        settings: "Sozlamalar",
+        change_lang: "Tilni o'zgartirish",
+        log_out: "Chiqish",
+        profileModal: {
+            profile: "Profil",
+            name: "Ism",
+            surname: "Familiya",
+            save: "Saqlash",
+            change: "O'zgartirish",
+        },
+        log_out_modal: {
+            warning: "Ogohlantirish",
+            are_u_sure: "Ishonchingiz komilmi ? ",
+        },
+    },
     home_page: {
-        section_title: "Bo'lim",
+        section_title: "Bo'limlar",
         all_users: "Barcha foydalanuvchilar",
         half_time: "Yarim vaqt",
         empty_places: "Bo'sh joylar",
@@ -28,10 +44,7 @@ export const uzLotin = {
         luxury_rooms: "Hashamatli xonalar",
         cottages: "Kottejlar",
         building: "Bino",
-        building: {
-            room: "Xona",
-
-        },
+        room: "Xona",
         information: {
             information_about_user: "Информация о пользователе",
             observing: "Kuzatish",

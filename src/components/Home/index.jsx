@@ -44,7 +44,7 @@ const Home = () => {
       <Wrapper.CardContainer>
         <Card
           onClick={() => navigate("/report")}
-          title="Reports"
+          title={t("home_page.report")}
           image={report}
         />
       </Wrapper.CardContainer>

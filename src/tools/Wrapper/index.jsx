@@ -3,8 +3,10 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "react-auth-kit";
 import store from "../../redux";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const Wrapper = ({ children }) => {
+  const client = new QueryClient();
   return (
     <ConfigProvider>
       <AuthProvider
@@ -13,9 +15,11 @@ const Wrapper = ({ children }) => {
         cookieDomain={window.location.hostname}
         cookieSecurity={window.location.protocol === "https:"}
       >
-        <BrowserRouter>
-          <Provider store={store}>{children}</Provider>
-        </BrowserRouter>
+        <QueryClientProvider client={client}>
+          <BrowserRouter>
+            <Provider store={store}>{children}</Provider>
+          </BrowserRouter>
+        </QueryClientProvider>
       </AuthProvider>
     </ConfigProvider>
   );

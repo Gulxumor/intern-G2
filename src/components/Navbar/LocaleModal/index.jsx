@@ -4,12 +4,14 @@ import { Segmented, Modal } from "antd";
 import useSegmentedAPI from "../../../generic/SegmentedAPI";
 import { useState } from "react";
 import i18n from "i18next";
+import { useTranslation } from "react-i18next";
 
 const LocaleModal = () => {
   const { localeModalVisibility } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
   const { segmentedLocale } = useSegmentedAPI();
   const [localeState, setLocaleState] = useState("");
+  const { t } = useTranslation();
 
   const onCancel = () => dispatch(switchlocaleModalVisibility());
 
@@ -21,9 +23,10 @@ const LocaleModal = () => {
 
   return (
     <Modal
-      title="Profile"
+      title={t("modal.profileModal.profile")}
       open={localeModalVisibility}
-      okText="Change"
+      okText={t("modal.profileModal.change")}
+      cancelText={t("empty_places.information.cancel")}
       onCancel={onCancel}
       onOk={switchLanguage}
     >

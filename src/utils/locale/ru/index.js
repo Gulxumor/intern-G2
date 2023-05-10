@@ -1,11 +1,28 @@
 export const ru = {
+    modal: {
+        settings: "Настройки",
+        change_lang: "Изменить язык",
+        log_out: "Выйти",
+        profileModal: {
+            profile: "Профиль",
+            name: "Имя",
+            surname: "Фамилия",
+            save: "Сохранять",
+            change: "Изменять",
+        },
+        log_out_modal: {
+            warning: "Предупреждение",
+            are_u_sure: "Вы уверены",
+            log_out: "Выйти",
+        },
+    },
     home_page: {
-        section_title: "Раздел",
+        section_title: "Разделы",
         all_users: "Все пользователи",
         half_time: "Половина времени",
         empty_places: "Пустые места",
         time_up: "Время вышло",
-        report: "Отчет",
+        report: "Отчеты",
     },
     all_users: {
         full_name: "Имя",
@@ -24,16 +41,11 @@ export const ru = {
     },
     empty_places: {
         building_types: "Типы зданий",
-        oridinary_rooms: "Обычные номера",
-        luxury_rooms: "Роскошные номера",
+        oridinary_rooms: "Обычные комнат",
+        luxury_rooms: "Люкс комнат",
         cottages: "Коттеджи",
         building: "Здание",
-
-
-        building: {
-            room: "Комната",
-
-        },
+        room: "Комната",
         information: {
             information_about_user: "Foydalanuvchi haqida ma'lumot",
             observing: "Наблюдение",

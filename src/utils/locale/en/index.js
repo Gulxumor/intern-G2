@@ -1,4 +1,20 @@
 export const en = {
+    modal: {
+        settings: "Settings",
+        change_lang: "Change language",
+        log_out: "Log Out",
+        profileModal: {
+            profile: "Profile",
+            name: "Name",
+            surname: "Surname",
+            save: "Save",
+            change: "Change",
+        },
+        log_out_modal: {
+            warning: "Warning",
+            are_u_sure: "Are you sure",
+        },
+    },
     home_page: {
         section_title: "Sections",
         all_users: "All users",
@@ -24,15 +40,11 @@ export const en = {
     },
     empty_places: {
         building_types: "Building Types",
-        oridinary_rooms: "Oridinary Rooms",
+        oridinary_rooms: "Ordinary Rooms",
         luxury_rooms: "Luxury Rooms",
         cottages: "Cottages",
         building: "Building",
-
-        building: {
-            room: "Room",
-
-        },
+        room: "Room",
         information: {
             information_about_user: "Information about user",
             observing: "Observing",

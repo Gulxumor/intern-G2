@@ -10,15 +10,17 @@ import {
   TranslationOutlined,
   LoginOutlined,
 } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 const useDropDownApi = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const navbarDropDown = ({ logOutHandler }) => {
     return [
       {
         label: (
           <MenuWrapper onClick={() => dispatch(switchProfileModalVisibility())}>
-            <SettingOutlined /> Setting
+            <SettingOutlined /> {t("modal.settings")}
           </MenuWrapper>
         ),
         key: "0",
@@ -26,7 +28,7 @@ const useDropDownApi = () => {
       {
         label: (
           <MenuWrapper onClick={() => dispatch(switchlocaleModalVisibility())}>
-            <TranslationOutlined /> Change language
+            <TranslationOutlined /> {t("modal.change_lang")}
           </MenuWrapper>
         ),
         key: "1",
@@ -34,7 +36,7 @@ const useDropDownApi = () => {
       {
         label: (
           <MenuWrapper onClick={logOutHandler} isDanger>
-            <LoginOutlined /> Log Out
+            <LoginOutlined /> {t("modal.log_out")}
           </MenuWrapper>
         ),
         key: "3",
