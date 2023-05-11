@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import Sixth from "./Sixth";
+import Fifth from "./Fifth";
 import {
   MainRoomWrapper,
   Room,
@@ -14,14 +14,14 @@ import {
   RoomWrapper,
   Title,
 } from "../../../generic/Style";
-const SixthBuilding = () => {
+const ThirdBuilding = () => {
   const axios = useAxios();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const { isLoading, data } = useQuery(
-    "accomodation/6",
-    () => axios({ url: "/accomodation/6/room" }).then((data) => data),
+    "accomodation/5",
+    () => axios({ url: "/accomodation/5/room" }).then((data) => data),
     { keepPreviousData: true, refetchOnWindowFocus: false }
   );
 
@@ -29,9 +29,9 @@ const SixthBuilding = () => {
     <Wrapper>
       <Title>
         <LeftOutlined
-          onClick={() => navigate("/building-types/ordinary-rooms")}
+          onClick={() => navigate("/building-types/luxury-rooms")}
         />
-        {`6 ${t("empty_places.building")}`}
+        {`5 ${t("empty_places.building")}`}
       </Title>
       {isLoading ? (
         <Spin />
@@ -45,7 +45,7 @@ const SixthBuilding = () => {
         //           isBooked ? (
         //             <Room color={"processing"} key={clienteID} />
         //           ) : userID ? (
-        //             <Sixth key={clienteID} userID={userID} />
+        //             <Fifth key={clienteID} userID={userID} />
         //           ) : (
         //             <Room color={"green"} key={clienteID} />
         //           )
@@ -54,10 +54,10 @@ const SixthBuilding = () => {
         //     </RoomWrapper>
         //   ))}
         // </MainRoomWrapper>
-        "6-xona"
+          "5-xona"
       )}
     </Wrapper>
   );
 };
 
-export default SixthBuilding;
+export default ThirdBuilding;

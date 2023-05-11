@@ -10,6 +10,8 @@ import Cottages from "../components/BuildingTypes/Cottages"
 import SecondBuilding from "../components/Buildings/SecondBuilding";
 import FourthBuilding from "../components/Buildings/FourthBuilding";
 import SixthBuilding from "../components/Buildings/SixthBuilding"
+import ThirdBuilding from "../components/Buildings/ThirdBuilding";
+import FifthBuilding from "../components/Buildings/FifthBuilding";
 
 export const path = [
     {
@@ -69,7 +71,21 @@ export const path = [
             {
                 id: "5-2",
                 path: "luxury-rooms",
-                element: <LuxuryRooms />
+                element: <LuxuryRooms />,
+                hasChild: true,
+                children: [
+                    {
+                        id: "5-2-1",
+                        path: "3",
+                        element: <ThirdBuilding />,
+                    },
+                    {
+                        id: "5-2-2",
+                        path: "5",
+                        element: <FifthBuilding />,
+                    },
+                ]
+
             },
             {
                 id: "5-3",

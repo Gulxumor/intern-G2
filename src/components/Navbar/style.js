@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+position:sticky;
+top:0;
     background: rgb(255, 255, 255);
     width: 100%;
     padding: 0px 10%;
