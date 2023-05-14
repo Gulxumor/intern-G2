@@ -15,6 +15,8 @@ const Cottage = ({ userID }) => {
     axios({ url: `/accomodation/5/user?_id=${userID}` }).then((data) => {
       setLoading(false);
       setData(data.data.data);
+
+      console.log(data);
     });
   }, []);
   return (

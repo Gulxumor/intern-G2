@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Wrapper } from "./style";
 import { LoadingOutlined } from "@ant-design/icons";
-import { notification } from "antd";
+// import { notification } from "antd";
 import { useNotificationAPI } from "../../generic/NotificationAPI";
 import useInput from "../../generic/InputAPI";
 import { useNavigate } from "react-router-dom";
@@ -30,8 +30,6 @@ const Login = () => {
       phoneNumber: phoneValue.replace(/[^\d]/g, ""),
       password: passwordRef.current.input.value,
     };
-console.log(phoneNumber);
-console.log(password);
     if (!phoneNumber || !password) return statusChecker(400);
 
     setLoading(true);
@@ -47,14 +45,6 @@ console.log(password);
         const { token, user } = res.data.data;
         localStorage.setItem("token", token);
         localStorage.setItem("userData", JSON.stringify(user));
-        console.log(
-          signIn({
-            token: token,
-            expiresIn: 3600,
-            tokenType: `Bearer`,
-            authState: user,
-          })
-        );
         if (
           signIn({
             token: token,
@@ -65,7 +55,8 @@ console.log(password);
         );
         navigate("/");
         setLoading(false);
-        return notification.success({ message: "Successfully logged in" });
+        return "";
+        // return notification.success({ message: "Successfully logged in" });
       })
       .catch((res) => {
         const status = res.response.status;
@@ -83,7 +74,6 @@ console.log(password);
         </Wrapper.Desc>
         <Wrapper.PhoneNumber
           value={phoneValue}
-          // ref={phoneRef}
           onChange={(e) => setPhoneValue(phoneFormatter(e.target.value))}
           addonBefore="+998"
           bordered={false}

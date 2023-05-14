@@ -5,15 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useQuery } from "react-query";
 import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import Cottage from "./Cottage";
-import {
-  MainRoomWrapper,
-  Room,
-  RoomContainer,
-  RoomTitle,
-  RoomWrapper,
-  Title,
-} from "../../../generic/Style";
+import { Title } from "../../../generic/Style";
 const Cottages = () => {
   const axios = useAxios();
   const { t } = useTranslation();
