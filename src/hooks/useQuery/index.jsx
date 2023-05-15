@@ -1,4 +1,4 @@
-import axios from "../useAxios/index";
+import useAxios from "../useAxios/index";
 import { useQuery } from "react-query";
 export const useQueryHandler = ({
   queryKey,
@@ -6,6 +6,7 @@ export const useQueryHandler = ({
   method = "GET",
   body,
 }) => {
+  const axios = useAxios();
   return useQuery(queryKey, () => axios({ url: queryLink, method, body }), {
     keepPreviousData: true,
     refetchOnWindowFocus: false,

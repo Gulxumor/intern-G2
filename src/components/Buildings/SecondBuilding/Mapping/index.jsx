@@ -1,4 +1,3 @@
-import Room from "./Room";
 import {
   MainRoomWrapper,
   RoomContainer,
@@ -9,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import BookedRoom from "./BookedRoom";
 import EmptyRoom from "./EmptyRoom";
+import Room from "./Room";
 
 const Mapping = () => {
   const { t } = useTranslation();
@@ -22,7 +22,13 @@ const Mapping = () => {
           <RoomTitle>{`${roomNumber} ${t("empty_places.room")}`}</RoomTitle>
           <RoomContainer>
             {cliente?.map(({ isBooked, userID }) =>
-              isBooked ? <BookedRoom /> : userID ? <Room /> : <EmptyRoom />
+              isBooked ? (
+                <BookedRoom />
+              ) : userID ? (
+                <Room userID={userID} />
+              ) : (
+                <EmptyRoom />
+              )
             )}
           </RoomContainer>
         </RoomWrapper>
