@@ -22,7 +22,13 @@ const Mapping = () => {
           <RoomTitle>{`${roomNumber} ${t("empty_places.room")}`}</RoomTitle>
           <RoomContainer>
             {cliente?.map(({ isBooked, userID }) =>
-              isBooked ? <BookedRoom /> : userID ? <Fourth /> : <EmptyRoom />
+              isBooked ? (
+                <BookedRoom />
+              ) : userID ? (
+                <Fourth userID={userID} />
+              ) : (
+                <EmptyRoom />
+              )
             )}
           </RoomContainer>
         </RoomWrapper>

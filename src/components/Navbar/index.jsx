@@ -42,7 +42,7 @@ const Navbar = () => {
             menu={{ items: navbarDropDown({ logOutHandler }) }}
           >
             <Wrapper.Avatar>
-              {authedUser().name[0].toUpperCase()}
+              {authedUser()?.name[0].toUpperCase()}
             </Wrapper.Avatar>
           </Dropdown>
         </Wrapper.Right>

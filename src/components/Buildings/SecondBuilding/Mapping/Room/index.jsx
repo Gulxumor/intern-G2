@@ -4,10 +4,12 @@ import dayjs from "dayjs";
 import { useQueryHandler } from "../../../../../hooks/useQuery";
 
 const OccupiedRoom = ({ userID }) => {
+
   const { data, isLoading } = useQueryHandler({
     queryKey: `user/${userID}`,
     queryLink: `/accomodation/2/user?_id=${userID}`,
   });
+  
   return (
     <Room color={"red"}>
       {isLoading ? (

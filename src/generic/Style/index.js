@@ -26,6 +26,7 @@ export const MainRoomWrapper = styled.div`
     background: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0.25) 6px 6px 7px;
     margin-top: 40px;
+    justify-content: center;
 `
 export const RoomWrapper = styled.div`
     padding-top:10px;

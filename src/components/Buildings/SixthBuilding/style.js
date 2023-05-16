@@ -6,6 +6,11 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    .container{
+        display:flex;
+    }
+
 `
 Wrapper.CardContainer = styled.div`
     margin: 30px auto;

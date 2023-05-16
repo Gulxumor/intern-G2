@@ -11,14 +11,14 @@ const Cottage = ({ userID }) => {
   const [isLoading, setLoading] = useState(true);
   //   const queryClient = useQueryClient();
 
-  useEffect(() => {
-    axios({ url: `/accomodation/5/user?_id=${userID}` }).then((data) => {
-      setLoading(false);
-      setData(data.data.data);
+  // useEffect(() => {
+  //   axios({ url: `/accomodation/5/user?_id=${userID}` }).then((data) => {
+  //     setLoading(false);
+  //     setData(data.data.data);
 
-      console.log(data);
-    });
-  }, []);
+  //     console.log(data);
+  //   });
+  // }, []);
   return (
     <Room color={"red"}>
       {isLoading ? (

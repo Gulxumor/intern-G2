@@ -11,10 +11,11 @@ import EmptyRoom from "./EmptyRoom";
 import Room from "./Room";
 
 const Mapping = () => {
+  
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const data = queryClient.getQueryData("accomodation/2");
-  console.log(data);
+
   return (
     <MainRoomWrapper>
       {data?.data?.data?.map(({ _id, roomNumber, cliente }) => (

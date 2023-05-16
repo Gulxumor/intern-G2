@@ -11,9 +11,11 @@ import EmptyRoom from "../../SecondBuilding/Mapping/EmptyRoom";
 import Third from "../Third";
 
 const Mapping = () => {
+
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const data = queryClient.getQueryData("accomodation/3");
+  
   return (
     <MainRoomWrapper>
       {data?.data?.data?.map(({ _id, roomNumber, cliente }) => (
@@ -21,7 +23,13 @@ const Mapping = () => {
           <RoomTitle>{`${roomNumber} ${t("empty_places.room")}`}</RoomTitle>
           <RoomContainer>
             {cliente?.map(({ isBooked, userID }) =>
-              isBooked ? <BookedRoom /> : userID ? <Third /> : <EmptyRoom />
+              isBooked ? (
+                <BookedRoom />
+              ) : userID ? (
+                <Third userID={userID} />
+              ) : (
+                <EmptyRoom />
+              )
             )}
           </RoomContainer>
         </RoomWrapper>

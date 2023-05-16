@@ -1,30 +1,27 @@
 import { Spin } from "antd";
-import useAxios from "../../../hooks/useAxios";
 import { Wrapper } from "./style";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "react-query";
 import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import Fifth from "./Fifth";
+// import Fifth from "./Fifth";
 import {
-  MainRoomWrapper,
-  Room,
-  RoomContainer,
-  RoomTitle,
-  RoomWrapper,
+  // MainRoomWrapper,
+  // Room,
+  // RoomContainer,
+  // RoomTitle,
+  // RoomWrapper,
   Title,
 } from "../../../generic/Style";
+import { useQueryHandler } from "../../../hooks/useQuery";
+
 const ThirdBuilding = () => {
-  const axios = useAxios();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { isLoading, data } = useQuery(
-    "accomodation/5",
-    () => axios({ url: "/accomodation/5/room" }).then((data) => data),
-    { keepPreviousData: true, refetchOnWindowFocus: false }
-  );
-
+  const { isLoading } = useQueryHandler({
+    queryKey: `accomodation/5`,
+    queryLink: `/accomodation/5/room`,
+  });
   return (
     <Wrapper>
       <Title>
@@ -54,7 +51,7 @@ const ThirdBuilding = () => {
         //     </RoomWrapper>
         //   ))}
         // </MainRoomWrapper>
-          "5-xona"
+        "5-xona"
       )}
     </Wrapper>
   );

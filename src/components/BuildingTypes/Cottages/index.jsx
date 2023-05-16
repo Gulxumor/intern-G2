@@ -1,21 +1,19 @@
 import { Spin } from "antd";
-import useAxios from "../../../hooks/useAxios";
 import { Wrapper } from "./style";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "react-query";
 import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { Title } from "../../../generic/Style";
+import { useQueryHandler } from "../../../hooks/useQuery";
+
 const Cottages = () => {
-  const axios = useAxios();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { isLoading, data } = useQuery(
-    "accomodation/5",
-    () => axios({ url: "/accomodation/5/room" }).then((data) => data),
-    { keepPreviousData: true, refetchOnWindowFocus: false }
-  );
+  const { isLoading } = useQueryHandler({
+    queryKey: "accomodation/5",
+    queryLink: "/accomodation/5/room",
+  });
 
   return (
     <Wrapper>

@@ -1,11 +1,9 @@
 import { Spin } from "antd";
-import useAxios from "../../../hooks/useAxios";
 import { Wrapper } from "./style";
 import { useTranslation } from "react-i18next";
-import { useQuery } from "react-query";
 import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import Sixth from "./Sixth";
+import FirstFloorMapping from "./FirstFloorMapping";
 import {
   MainRoomWrapper,
   Room,
@@ -14,16 +12,26 @@ import {
   RoomWrapper,
   Title,
 } from "../../../generic/Style";
+import { useQueryHandler } from "../../../hooks/useQuery";
+
 const SixthBuilding = () => {
-  const axios = useAxios();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const useQuery = useQueryHandler();
 
-  const { isLoading, data } = useQuery(
-    "accomodation/6",
-    () => axios({ url: "/accomodation/6/room" }).then((data) => data),
-    { keepPreviousData: true, refetchOnWindowFocus: false }
-  );
+  const { isLoading: firstFloorLoading } = useQuery({
+    queryKey: "accomodation/6-1",
+    queryLink: "/accomodation/6-1/room",
+  });
+
+  const { isLoading: secondFloorLoading } = useQuery({
+    queryKey: "accomodation/6-2",
+    queryLink: "/accomodation/6-2/room",
+  });
+  const { isLoading: thirdFloorLoading } = useQuery({
+    queryKey: "accomodation/6-3",
+    queryLink: "/accomodation/6-3/room",
+  });
 
   return (
     <Wrapper>
@@ -33,28 +41,12 @@ const SixthBuilding = () => {
         />
         {`6 ${t("empty_places.building")}`}
       </Title>
-      {isLoading ? (
+      {firstFloorLoading || secondFloorLoading || thirdFloorLoading ? (
         <Spin />
       ) : (
-        // <MainRoomWrapper>
-        //   {data.data.data.map(({ _id, roomNumber, cliente }) => (
-        //     <RoomWrapper key={_id}>
-        //       <RoomTitle>{`${roomNumber} ${t("empty_places.room")}`}</RoomTitle>
-        //       <RoomContainer>
-        //         {cliente?.map(({ clienteID, isBooked, userID }) =>
-        //           isBooked ? (
-        //             <Room color={"processing"} key={clienteID} />
-        //           ) : userID ? (
-        //             <Sixth key={clienteID} userID={userID} />
-        //           ) : (
-        //             <Room color={"green"} key={clienteID} />
-        //           )
-        //         )}
-        //       </RoomContainer>
-        //     </RoomWrapper>
-        //   ))}
-        // </MainRoomWrapper>
-        "6-xona"
+        <>
+          <FirstFloorMapping /> <SecondFloorMapping /> <ThirdFloorMapping />
+        </>
       )}
     </Wrapper>
   );
