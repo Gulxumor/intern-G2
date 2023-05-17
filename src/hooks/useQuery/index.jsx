@@ -7,8 +7,12 @@ export const useQueryHandler = ({
   body,
 }) => {
   const axios = useAxios();
-  return useQuery(queryKey, () => axios({ url: queryLink, method, body }), {
-    keepPreviousData: true,
-    refetchOnWindowFocus: false,
-  });
+  return useQuery(
+    queryKey,
+    () => axios({ url: queryLink, method, body }).then((res) => res.data.data),
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+    }
+  );
 };

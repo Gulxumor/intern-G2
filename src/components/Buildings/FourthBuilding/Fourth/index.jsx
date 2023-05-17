@@ -13,7 +13,7 @@ const Fourth = ({ userID }) => {
       {isLoading ? (
         <LoadingOutlined />
       ) : (
-        dayjs(new Date(+data?.data?.data?.endDate)).diff(new Date(), "d")
+        dayjs(new Date(+data?.endDate)).diff(new Date(), "d")
       )}
     </Room>
   );

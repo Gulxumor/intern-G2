@@ -1,15 +1,15 @@
-import { Room } from "../../../../generic/Style";
+import { Room } from "../../../../../generic/Style";
 import { LoadingOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { useQueryHandler } from "../../../../hooks/useQuery";
+import { useQueryHandler } from "../../../../../hooks/useQuery";
 
-const Third = ({ userID }) => {
+const OccupiedRoom = ({ userID }) => {
 
   const { data, isLoading } = useQueryHandler({
     queryKey: `user/${userID}`,
-    queryLink: `/accomodation/3/user?_id=${userID}`,
+    queryLink: `/accomodation/2/user?_id=${userID}`,
   });
-
+  
   return (
     <Room color={"red"}>
       {isLoading ? (
@@ -21,4 +21,4 @@ const Third = ({ userID }) => {
   );
 };
 
-export default Third;
+export default OccupiedRoom;

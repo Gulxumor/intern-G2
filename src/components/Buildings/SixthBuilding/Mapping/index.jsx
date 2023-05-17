@@ -9,22 +9,20 @@ import {
   RoomTitle,
   RoomWrapper,
 } from "../../../../generic/Style";
-import UserModal from "../../Common/UserModal";
+
+const statusChecker = (isBooked, userID, clienteID) => {
+  if (isBooked) return <BookedRoom key={clienteID} />;
+  else if (userID) return <Room key={clienteID} userID={userID} />;
+  return <EmptyRoom key={clienteID} />;
+};
 
 const Mapping = () => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
-  const data = queryClient.getQueryData("accomodation/2");
-
-  const statusChecker = (isBooked, userID, clienteID) => {
-    if (isBooked) return <BookedRoom key={clienteID} />;
-    else if (userID) return <Room key={clienteID} userID={userID} />;
-    return <EmptyRoom key={clienteID} />;
-  };
+  const data = queryClient.getQueryData("accomodation/6-1");
 
   return (
     <MainRoomWrapper>
-      <UserModal />
       {data?.map(({ _id, roomNumber, cliente }) => (
         <RoomWrapper key={_id}>
           <RoomTitle>{`${roomNumber} ${t("empty_places.room")}`}</RoomTitle>

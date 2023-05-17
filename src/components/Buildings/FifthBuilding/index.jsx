@@ -3,24 +3,32 @@ import { Wrapper } from "./style";
 import { useTranslation } from "react-i18next";
 import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-// import Fifth from "./Fifth";
+import Fifth from "./Fifth";
 import {
-  // MainRoomWrapper,
+  MainRoomWrapper,
   // Room,
-  // RoomContainer,
-  // RoomTitle,
-  // RoomWrapper,
+  RoomContainer,
+  RoomTitle,
+  RoomWrapper,
   Title,
 } from "../../../generic/Style";
 import { useQueryHandler } from "../../../hooks/useQuery";
+import BookedRoom from "./Mapping/BookedRoom";
+import EmptyRoom from "./Mapping/EmptyRoom";
 
-const ThirdBuilding = () => {
+const statusChecker = (isBooked, userID, clienteID) => {
+  if (isBooked) return <BookedRoom key={clienteID} />;
+  else if (userID) return <Fifth key={clienteID} userID={userID} />;
+  return <EmptyRoom key={clienteID} />;
+};
+
+const FifthBuilding = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { isLoading } = useQueryHandler({
-    queryKey: `accomodation/5`,
-    queryLink: `/accomodation/5/room`,
+  const { isLoading, data } = useQueryHandler({
+    queryKey: `accomodation/5-1`,
+    queryLink: `/accomodation/5-1/room`,
   });
   return (
     <Wrapper>
@@ -33,28 +41,26 @@ const ThirdBuilding = () => {
       {isLoading ? (
         <Spin />
       ) : (
-        // <MainRoomWrapper>
-        //   {data.data.data.map(({ _id, roomNumber, cliente }) => (
-        //     <RoomWrapper key={_id}>
-        //       <RoomTitle>{`${roomNumber} ${t("empty_places.room")}`}</RoomTitle>
-        //       <RoomContainer>
-        //         {cliente?.map(({ clienteID, isBooked, userID }) =>
-        //           isBooked ? (
-        //             <Room color={"processing"} key={clienteID} />
-        //           ) : userID ? (
-        //             <Fifth key={clienteID} userID={userID} />
-        //           ) : (
-        //             <Room color={"green"} key={clienteID} />
-        //           )
-        //         )}
-        //       </RoomContainer>
-        //     </RoomWrapper>
-        //   ))}
-        // </MainRoomWrapper>
-        "5-xona"
+        <>
+          <MainRoomWrapper>
+            {data?.map(({ _id, roomNumber, cliente }) => (
+              <RoomWrapper key={_id}>
+                <RoomTitle>{`${roomNumber} ${t(
+                  "empty_places.room"
+                )}`}</RoomTitle>
+                <RoomContainer>
+                  {cliente?.map(({ isBooked, userID, clienteID }) =>
+                    statusChecker(isBooked, userID, clienteID)
+                  )}
+                </RoomContainer>
+              </RoomWrapper>
+            ))}
+          </MainRoomWrapper>
+        </>
+        // "5-xona"
       )}
     </Wrapper>
   );
 };
 
-export default ThirdBuilding;
+export default FifthBuilding;

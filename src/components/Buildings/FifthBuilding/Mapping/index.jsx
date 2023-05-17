@@ -9,7 +9,6 @@ import {
   RoomTitle,
   RoomWrapper,
 } from "../../../../generic/Style";
-import UserModal from "../../Common/UserModal";
 
 const Mapping = () => {
   const { t } = useTranslation();
@@ -24,7 +23,6 @@ const Mapping = () => {
 
   return (
     <MainRoomWrapper>
-      <UserModal />
       {data?.map(({ _id, roomNumber, cliente }) => (
         <RoomWrapper key={_id}>
           <RoomTitle>{`${roomNumber} ${t("empty_places.room")}`}</RoomTitle>
