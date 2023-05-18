@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import { useQueryHandler } from "../../../../../hooks/useQuery";
 import { useDispatch } from "react-redux";
 import { switchUserModalVisibility } from "../../../../../redux/modalSlice";
+import { switchSetSelectedUserID } from "../../../../../redux/userSlice";
 
 const OccupiedRoom = ({ userID }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const OccupiedRoom = ({ userID }) => {
   });
   const roomClickDetector = () => {
     dispatch(switchUserModalVisibility());
+    dispatch(switchSetSelectedUserID(userID));
   };
   return (
     <Room color={"red"} onClick={() => roomClickDetector()}>
