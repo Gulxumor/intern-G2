@@ -1,5 +1,11 @@
+import EmptyBooking from "./EmptyUI";
+
 function Booking() {
-  return <div>Booking</div>;
+  return (
+    <div>
+      <EmptyBooking />
+    </div>
+  );
 }
 
 export default Booking;

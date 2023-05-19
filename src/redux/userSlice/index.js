@@ -7,7 +7,7 @@ const UserSlice = createSlice({
   },
   reducers: {
     switchSetSelectedUserID(state, { payload }) {
-      state.bookedRoomInfo = payload;
+      state.selectedUserID = payload;
     },
   },
 });

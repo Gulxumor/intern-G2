@@ -48,7 +48,9 @@ export const en = {
         information: {
             information_about_user: "Information about user",
             observing: "Observing",
-            booked_places: "Booked_places",
+            editing: "Editing",
+            booking: "Booking",
+            booked_places: "Booked Places",
             edit: "Edit",
             add: "Add",
             room_is_empty: "Room is empty. You can add new user by clicking «Add»",
@@ -63,6 +65,9 @@ export const en = {
             daily_price: "Daily price",
             total_price: "Total price",
             vouncher_status: "Voucher status",
+            with: "Witch",
+            without: "Without",
+            voucher: "Voucher",
             pay_by_cash: "Pay by Cash",
             pay_by_card: "Pay by Card",
             payment_difference: "Payment difference",
@@ -79,7 +84,16 @@ export const en = {
             error_message: "There is no any booked places!",
         },
         edit: {
-            date_range: "Date Range"
+            date_range: "Date Range",
+            name_error: "Please enter your name",
+            birth_date_error: "Please enter your Birth Date",
+            pass_number_error: "Please enter your Passport Number",
+            phone_number_error: "Please enter your Phone Number",
+            range_error: "Please enter your range",
+            address_error: "Please enter your address",
+            daily_price_error: "Please enter your daily price",
+            cash_error: "Please enter your pay by cash",
+            card_error: "Please enter your pay by card"
         },
     },
 }
