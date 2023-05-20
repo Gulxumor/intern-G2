@@ -3,61 +3,39 @@ import { Wrapper } from "./style";
 import { useTranslation } from "react-i18next";
 import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import Fifth from "./Fifth";
-import {
-  MainRoomWrapper,
-  // Room,
-  RoomContainer,
-  RoomTitle,
-  RoomWrapper,
-  Title,
-} from "../../../generic/Style";
+import { Title } from "../../../generic/Style";
 import { useQueryHandler } from "../../../hooks/useQuery";
-import BookedRoom from "./Mapping/BookedRoom";
-import EmptyRoom from "./Mapping/EmptyRoom";
-
-const statusChecker = (isBooked, userID, clienteID) => {
-  if (isBooked) return <BookedRoom key={clienteID} />;
-  else if (userID) return <Fifth key={clienteID} userID={userID} />;
-  return <EmptyRoom key={clienteID} />;
-};
+import UserModal from "../Common/UserModal";
+import FirstFloorMapping from "./FirstFloorMapping";
+import SecondFloorMapping from "./SecondFloorMapping";
 
 const FifthBuilding = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { isLoading, data } = useQueryHandler({
+  const { isLoading: firstFloorLoading } = useQueryHandler({
     queryKey: `accomodation/5-1`,
     queryLink: `/accomodation/5-1/room`,
   });
+  const { isLoading: secondFloorLoading } = useQueryHandler({
+    queryKey: `accomodation/5-1`,
+    queryLink: `/accomodation/5-2/room`,
+  });
   return (
     <Wrapper>
+      <UserModal />
       <Title>
         <LeftOutlined
           onClick={() => navigate("/building-types/luxury-rooms")}
         />
         {`5 ${t("empty_places.building")}`}
       </Title>
-      {isLoading ? (
+      {firstFloorLoading || secondFloorLoading ? (
         <Spin />
       ) : (
         <>
-          <MainRoomWrapper>
-            {data?.map(({ _id, roomNumber, cliente }) => (
-              <RoomWrapper key={_id}>
-                <RoomTitle>{`${roomNumber} ${t(
-                  "empty_places.room"
-                )}`}</RoomTitle>
-                <RoomContainer>
-                  {cliente?.map(({ isBooked, userID, clienteID }) =>
-                    statusChecker(isBooked, userID, clienteID)
-                  )}
-                </RoomContainer>
-              </RoomWrapper>
-            ))}
-          </MainRoomWrapper>
+          <FirstFloorMapping /> <SecondFloorMapping />
         </>
-        // "5-xona"
       )}
     </Wrapper>
   );

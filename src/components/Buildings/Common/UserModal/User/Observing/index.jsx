@@ -93,7 +93,6 @@ const Observing = () => {
             {userData?.hasVoucher
               ? t("empty_places.information.with")
               : t("empty_places.information.without")}
-            {t("empty_places.information.vouncher")}
           </Wrapper.InfoWrap.Value>
         </Wrapper.InfoWrap>
         <Wrapper.InfoWrap>

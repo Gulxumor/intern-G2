@@ -46,8 +46,10 @@ export const uzLotin = {
         building: "Bino",
         room: "Xona",
         information: {
-            information_about_user: "Информация о пользователе",
+            information_about_user: "Foydalanuvchi haqida ma'lumot",
             observing: "Kuzatish",
+            editing: "Tahrirlash",
+            booking: "Bronlangan joylar",
             booked_places: "Band qilingan joylar",
             edit: "Tahrirlash",
             add: "Qo'shish",
@@ -63,6 +65,8 @@ export const uzLotin = {
             daily_price: "Kundalik narx",
             total_price: "Jami Narx",
             vouncher_status: "Voucher holati",
+            with: "Voucher bilan",
+            without: "Vouchersiz",
             pay_by_cash: "Naqd pul bilan to'lash",
             pay_by_card: "Karta orqali to'lash",
             pay_difference: "To'lov farqi",
@@ -73,13 +77,22 @@ export const uzLotin = {
             delete: "Oʻchirish",
             empty_place_error: "Bo'sh joy",
             this_place_is_empty: `Bu joy bo'sh. Yangi foydalanuvchi qo'shish uchun "Qo'shish" tugmasini bosing. Yoki bu joyni band qilish uchun "Band qilish" tugmasini bosing.`,
-            book: "Bnad qilish"
+            book: "Band qilish"
         },
         booked_places: {
             error_message: "Hech qanday band qilingan joy yo'q!",
         },
         edit: {
-            date_range: "Sana diapazoni"
+            date_range: "Sana diapazoni",
+            name_error: "Iltimos, ismni kiriting",
+            birth_date_error: "Iltimos, tug'ilgan kunni kiriting",
+            pass_number_error: "Iltimos, passport raqamni kiriting",
+            phone_number_error: "Iltimos, telefon raqamni kiriting",
+            range_error: "Iltimos, sana oralig'ini kiriting",
+            address_error: "Iltimos, manzilni kiriting",
+            daily_price_error: "Iltimos, kundalik narxni kiriting",
+            cash_error: "Iltimos, naqd to'lovni kirting!",
+            card_error: "Iltimos, karta orqali to'lovni kirting!"
         },
     },
 }

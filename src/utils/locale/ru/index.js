@@ -47,8 +47,10 @@ export const ru = {
         building: "Здание",
         room: "Комната",
         information: {
-            information_about_user: "Foydalanuvchi haqida ma'lumot",
+            information_about_user: "Информация о пользователе",
             observing: "Наблюдение",
+            editing: "Редактирование",
+            booking: "Бронирование",
             booked_places: "Забронированные места",
             edit: "Редактировать",
             add: "Добавлять",
@@ -64,6 +66,8 @@ export const ru = {
             daily_price: "Ежедневная цена",
             total_price: "Итоговая цена",
             vouncher_status: "Статус ваучера",
+            with: "С Ваучер",
+            without: "Без Ваучер",
             pay_by_cash: "Оплата наличными",
             pay_by_card: "Оплатить картой",
             pay_difference: "Разница в оплате",
@@ -80,7 +84,16 @@ export const ru = {
             error_message: "Забронированных мест нет!",
         },
         edit: {
-            date_range: "Диапазон дат"
+            date_range: "Диапазон дат",
+            name_error: "Пожалуйста, введите ваш имя",
+            birth_date_error: "Пожалуйста, введите ваш Дата рождения",
+            pass_number_error: "Пожалуйста, введите ваш Номер паспорта",
+            phone_number_error: "Пожалуйста, введите ваш Номер телефона",
+            range_error: "Пожалуйста, введите ваш диапазон",
+            address_error: "Пожалуйста, введите ваш адрес",
+            daily_price_error: "Пожалуйста, введите ваш дневная цена",
+            cash_error: "Пожалуйста, введите ваш платить наличными",
+            card_error: "Пожалуйста, введите ваш оплатить картой"
         },
     },
 }

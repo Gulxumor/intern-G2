@@ -65,9 +65,8 @@ export const en = {
             daily_price: "Daily price",
             total_price: "Total price",
             vouncher_status: "Voucher status",
-            with: "Witch",
-            without: "Without",
-            voucher: "Voucher",
+            with: "Witch Voucher",
+            without: "Without Voucher",
             pay_by_cash: "Pay by Cash",
             pay_by_card: "Pay by Card",
             payment_difference: "Payment difference",
@@ -95,5 +94,8 @@ export const en = {
             cash_error: "Please enter your pay by cash",
             card_error: "Please enter your pay by card"
         },
+        buildingFloor: {
+            floor:"Floor"
+        }
     },
 }

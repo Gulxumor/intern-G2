@@ -6,8 +6,10 @@ import Editing from "../User/Editing";
 import Observing from "../User/Observing";
 
 const SegmentedSection = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Observing");
   const { t } = useTranslation();
+  const [selectedCategory, setSelectedCategory] = useState(
+    t("empty_places.information.observing")
+  );
   const checker = (selectedCategory) => {
     switch (selectedCategory) {
       case t("empty_places.information.editing"):
@@ -31,8 +33,9 @@ const SegmentedSection = () => {
           t("empty_places.information.booking"),
           t("empty_places.information.editing"),
         ]}
+        style={{ margin: "20px 0" }}
         onChange={(e) => setSelectedCategory(e)}
-        
+
         // onChange={(value) => setSelectedCategory(value)}
       />
       {checker(selectedCategory)}

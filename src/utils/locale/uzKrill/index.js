@@ -50,6 +50,8 @@ export const uzKrill = {
         information: {
             information_about_user: "Мижоз ҳақида маълумот",
             observing: "Кузатув",
+            editing: "Ўзгартириш",
+            booking: "Бронланган жойлар",
             booked_places: "Бронланган жойлар",
             edit: "Ўзгартириш",
             add: "Қўшиш",
@@ -64,7 +66,9 @@ export const uzKrill = {
             remaining_days: "Қолган кун:",
             daily_price: "Кунлик нарх:",
             total_price: "Жами тўлов:",
-            vouncher_status: "Воучер холати:",
+            vouncher_status: "Воучер холати",
+            with: "Ваучерли",
+            without: "Воучер сиз",
             pay_by_cash: "Нақд тўлов",
             pay_by_card: "Карта орқали тўлов",
             pay_difference: "Тўлов фарқи",
@@ -81,7 +85,16 @@ export const uzKrill = {
             error_message: "Бронланган жойлар мавжуд емас!",
         },
         edit: {
-            date_range: "Сана оралиғ"
+            date_range: "Сана оралиғ",
+            name_error: "Илтимос, тўлиқ исмни киритинг!",
+            birth_date_error: "Илтимос, хона рақамини киритинг!",
+            pass_number_error: "Илтимос, пасспорт рақамини киртинг!",
+            phone_number_error: "Илтимос, тел рақамни киритинг!",
+            range_error: "Илтимос, сана оралиғини киритинг!",
+            address_error: "Илтимос, адрессни киритинг!",
+            daily_price_error: "Илтимос, кунлик нархни киритинг!",
+            cash_error: "Илтимос, нақд тўловни киртинг!",
+            card_error: "Илтимос, карта орқали тўловни киртинг!"
         },
     },
 }
