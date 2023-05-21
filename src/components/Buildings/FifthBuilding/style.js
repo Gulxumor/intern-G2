@@ -7,9 +7,16 @@ export const Wrapper = styled.div`
     justify-content: center;
     flex-direction: column;
 `
-Wrapper.CardContainer = styled.div`
-    margin: 30px auto;
-    width: fit-content;
-    display: flex;
-    gap: 150px;
-`
+Wrapper.MapWrapper = styled.div`
+  width: 650px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  grid-gap: 20px;
+  @media (max-width: 650px) {
+    width: 100%;
+  }
+  @media (max-width: 350px) {
+    width: 300px;
+  }
+`;

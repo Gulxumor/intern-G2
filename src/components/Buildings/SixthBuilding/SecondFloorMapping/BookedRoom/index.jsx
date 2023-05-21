@@ -17,7 +17,7 @@ const BookedRoom = ({ clienteInfo }) => {
         dispatch(
           switchSetSelectedUserID({
             ...clienteInfo,
-            mutationBuildingNumber: "5-2",
+            mutationBuildingNumber: "6-2",
           })
         );
       }}

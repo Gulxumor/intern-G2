@@ -13,10 +13,10 @@ import {
   MenuWrapper,
 } from "../../../../generic/Style";
 
-const FirstFloorMapping = () => {
+const ThirdFloorMapping = () => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
-  const data = queryClient.getQueryData("accomodation/5-1");
+  const data = queryClient.getQueryData("accomodation/6-3");
 
   return (
     <MenuWrapper>
@@ -78,4 +78,4 @@ const FirstFloorMapping = () => {
   );
 };
 
-export default FirstFloorMapping;
+export default ThirdFloorMapping;

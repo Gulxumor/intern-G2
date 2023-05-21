@@ -16,7 +16,7 @@ const EmptyRoom = ({ clienteInfo }) => {
   const dispatch = useDispatch();
   const onClickHandler = () => {
     dispatch(
-      switchSetSelectedUserID({ ...clienteInfo, mutationBuildingNumber: "5-1" })
+      switchSetSelectedUserID({ ...clienteInfo, mutationBuildingNumber: "5-2" })
     );
     return confirm({
       title: t("empty_places.information.empty_place_error"),

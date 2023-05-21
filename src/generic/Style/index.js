@@ -3,19 +3,43 @@ import { Tag } from "antd";
 
 export const MenuWrapper = styled.div`
     display: flex;
-    flex-direction: ${({ floor }) => floor ? "column" : ""};
     gap: 20px;
     color: ${({ isDanger }) => isDanger ? "red" : ""};
 `
 export const Title = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 500;
-    font-size: 34px;
-    line-height: 77px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 77px;
+  color: #000000;
+  margin: 40px;
+  @media (max-width: 600px) {
     margin: 40px;
-`
+    font-size: 24px;
+  }
+  @media (max-width: 400px) {
+    margin: 40px;
+    font-size: 18px;
+  }
+`;
+export const FloorTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 77px;
+  color: #000000;
+  width: 100%;
+  @media (max-width: 600px) {
+    font-size: 22px;
+  }
+`;
+
 export const MainRoomWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;

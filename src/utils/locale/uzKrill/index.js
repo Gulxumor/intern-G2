@@ -71,7 +71,7 @@ export const uzKrill = {
             without: "Воучер сиз",
             pay_by_cash: "Нақд тўлов",
             pay_by_card: "Карта орқали тўлов",
-            pay_difference: "Тўлов фарқи",
+            payment_difference: "Тўлов фарқи",
             building_number: "Building number",
             room_number: "Бино рақами:",
             cancel: "Бекор қилиш",
@@ -95,6 +95,9 @@ export const uzKrill = {
             daily_price_error: "Илтимос, кунлик нархни киритинг!",
             cash_error: "Илтимос, нақд тўловни киртинг!",
             card_error: "Илтимос, карта орқали тўловни киртинг!"
+        },
+        buildingFloor: {
+            floor: "Қават"
         },
     },
 }

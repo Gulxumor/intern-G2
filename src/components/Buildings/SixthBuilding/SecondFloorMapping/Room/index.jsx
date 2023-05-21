@@ -1,6 +1,6 @@
 import { BookedTag, Room } from "../../../../../generic/Style";
 import dayjs from "dayjs";
-import { useQueryHandler } from "../../../../../hooks/useQuery";
+import {useQueryHandler} from "../../../../../hooks/useQuery";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { switchUserModalVisibility } from "../../../../../redux/modalSlice";
@@ -12,9 +12,10 @@ import { useTranslation } from "react-i18next";
 const RoomComponent = ({ clienteInfo }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const useQuery = useQueryHandler();
 
-  const { data, isLoading } = useQueryHandler({
-    queryLink: `/accomodation/5-2/user?_id=${clienteInfo?.userID}`,
+  const { data, isLoading } = useQuery({
+    queryLink: `/accomodation/6-2/user?_id=${clienteInfo?.userID}`,
     queryKey: `user/${clienteInfo?.userID}`,
   });
 
@@ -27,7 +28,7 @@ const RoomComponent = ({ clienteInfo }) => {
           dispatch(
             switchSetSelectedUserID({
               ...clienteInfo,
-              mutationBuildingNumber: "5-2",
+              mutationBuildingNumber: "6-2",
             })
           );
         }

@@ -70,7 +70,7 @@ export const ru = {
             without: "Без Ваучер",
             pay_by_cash: "Оплата наличными",
             pay_by_card: "Оплатить картой",
-            pay_difference: "Разница в оплате",
+            payment_difference: "Разница в оплате",
             building_number: "Номер здания",
             room_number: "Номер комнаты",
             cancel: "Отмена",
@@ -95,5 +95,8 @@ export const ru = {
             cash_error: "Пожалуйста, введите ваш платить наличными",
             card_error: "Пожалуйста, введите ваш оплатить картой"
         },
+        buildingFloor: {
+            floor: "Этаж"
+        }
     },
 }

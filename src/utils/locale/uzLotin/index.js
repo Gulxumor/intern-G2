@@ -69,7 +69,7 @@ export const uzLotin = {
             without: "Vouchersiz",
             pay_by_cash: "Naqd pul bilan to'lash",
             pay_by_card: "Karta orqali to'lash",
-            pay_difference: "To'lov farqi",
+            payment_difference: "To'lov farqi",
             building_number: "Bino raqami",
             room_number: "Xona raqami",
             cancel: "Bekor qilish",
@@ -94,5 +94,8 @@ export const uzLotin = {
             cash_error: "Iltimos, naqd to'lovni kirting!",
             card_error: "Iltimos, karta orqali to'lovni kirting!"
         },
+        buildingFloor: {
+            floor: "Qavat"
+        }
     },
 }

@@ -18,7 +18,7 @@ const FifthBuilding = () => {
     queryLink: `/accomodation/5-1/room`,
   });
   const { isLoading: secondFloorLoading } = useQueryHandler({
-    queryKey: `accomodation/5-1`,
+    queryKey: `accomodation/5-2`,
     queryLink: `/accomodation/5-2/room`,
   });
   return (
@@ -30,13 +30,15 @@ const FifthBuilding = () => {
         />
         {`5 ${t("empty_places.building")}`}
       </Title>
-      {firstFloorLoading || secondFloorLoading ? (
-        <Spin />
-      ) : (
-        <>
-          <FirstFloorMapping /> <SecondFloorMapping />
-        </>
-      )}
+      <Wrapper.MapWrapper>
+        {firstFloorLoading || secondFloorLoading ? (
+          <Spin />
+        ) : (
+          <>
+            <FirstFloorMapping /> <SecondFloorMapping />
+          </>
+        )}{" "}
+      </Wrapper.MapWrapper>
     </Wrapper>
   );
 };

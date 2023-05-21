@@ -16,7 +16,7 @@ import {
 const FirstFloorMapping = () => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
-  const data = queryClient.getQueryData("accomodation/5-1");
+  const data = queryClient.getQueryData("accomodation/6-1");
 
   return (
     <MenuWrapper>
