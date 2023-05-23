@@ -6,8 +6,8 @@ import { Title } from "../../../generic/Style";
 import { useNavigate } from "react-router-dom";
 import Mapping from "./Mapping";
 import { useQueryHandler } from "../../../hooks/useQuery";
-import UserModal from "../Common/UserModal";
-const SecondBuilding = () => {
+
+const FourthBuilding = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -18,11 +18,8 @@ const SecondBuilding = () => {
 
   return (
     <Wrapper>
-      <UserModal />
       <Title>
-        <LeftOutlined
-          onClick={() => navigate("/building-types/ordinary-rooms")}
-        />
+        <LeftOutlined onClick={() => navigate(-1)} />
         {`4 ${t("empty_places.building")}`}
       </Title>
       {isLoading ? <Spin /> : <Mapping />}
@@ -30,4 +27,4 @@ const SecondBuilding = () => {
   );
 };
 
-export default SecondBuilding;
+export default FourthBuilding;

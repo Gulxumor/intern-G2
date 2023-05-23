@@ -1,7 +1,7 @@
 import { Segmented } from "antd";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Booked from "../User/Booking";
+import Booked from "../Booking";
 import Editing from "../User/Editing";
 import Observing from "../User/Observing";
 

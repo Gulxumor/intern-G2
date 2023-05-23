@@ -1,7 +1,7 @@
-import { Room } from "../../../../generic/Style";
+import { Room } from "../../../../../generic/Style";
 import { LoadingOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { useQueryHandler } from "../../../../hooks/useQuery";
+import { useQueryHandler } from "../../../../../hooks/useQuery";
 
 const Third = ({ userID }) => {
 

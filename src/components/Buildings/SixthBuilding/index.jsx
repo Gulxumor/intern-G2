@@ -5,7 +5,7 @@ import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { Title } from "../../../generic/Style";
 import { useQueryHandler } from "../../../hooks/useQuery";
-import UserModal from "../Common/UserModal";
+// import UserModal from "../Common/UserModal";
 import FirstFloorMapping from "./FirstFloorMapping";
 import SecondFloorMapping from "./SecondFloorMapping";
 import ThirdFloorMapping from "./ThirdFloorMapping";
@@ -27,22 +27,26 @@ const SixthBuilding = () => {
     queryLink: "/accomodation/6-3/room",
   });
 
-  <Wrapper>
-    <UserModal />
-    <Title>
-      <LeftOutlined onClick={() => navigate(-1)} />
-      {`6 ${t("empty_places.building")}`}
-    </Title>
-    <Wrapper.MapWrapper>
-      {firstFloorLoading || secondFloorLoading || thirdFloorLoading ? (
-        <Spin />
-      ) : (
-        <>
-          <FirstFloorMapping /> <SecondFloorMapping /> <ThirdFloorMapping />
-        </>
-      )}
-    </Wrapper.MapWrapper>
-  </Wrapper>;
+  return (
+    <Wrapper>
+      {/* <UserModal /> */}
+      <Title>
+        <LeftOutlined onClick={() => navigate(-1)} />
+        {`6 ${t("empty_places.building")}`}
+      </Title>
+      <Wrapper.MapWrapper>
+        {firstFloorLoading || secondFloorLoading || thirdFloorLoading ? (
+          <Spin />
+        ) : (
+          <>
+            <FirstFloorMapping /> <SecondFloorMapping /> <ThirdFloorMapping />
+          </>
+        )}
+      </Wrapper.MapWrapper>
+    </Wrapper>
+  );
+
+ 
 };
 
 export default SixthBuilding;

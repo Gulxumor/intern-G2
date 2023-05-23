@@ -13,7 +13,7 @@ const BookedRoom = (roomValue, clienteValue) => {
         dispatch(
           setSelectedUser({
             userID: clienteValue.userID,
-            buildingMutation: "2",
+            buildingMutation: "3",
             clienteValue,
             roomValue,
           })

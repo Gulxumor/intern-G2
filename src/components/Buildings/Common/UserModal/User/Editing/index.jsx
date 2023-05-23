@@ -1,16 +1,20 @@
-import { DatePicker, Form, Input } from "antd";
+import { Button, DatePicker, Form, Input } from "antd";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
+import EmptySpace from "../EmptySpace";
+import { Wrapper } from "./style";
 
 const Editing = () => {
-  const { selectedUserID } = useSelector((state) => state.user);
+  const { selectedUser } = useSelector((state) => state.user);
   const queryClient = useQueryClient();
-  const userData = queryClient.getQueryData(`user/${selectedUserID}`);
+  const userData = queryClient.getQueryData(`user/${selectedUser.userID}`);
   const { RangePicker } = DatePicker;
   const { t } = useTranslation();
-  return (
+  return !selectedUser.userID ? (
+    <EmptySpace />
+  ) : (
     <Form
       layout="vertical"
       name="Basic"
@@ -33,6 +37,7 @@ const Editing = () => {
         price: userData?.dayCost,
         cash: userData?.paidByCash,
         card: userData?.paidByPlasticCard,
+        range: [dayjs(+userData?.arrivalDate), dayjs(+userData?.endDate)],
       }}
     >
       <Form.Item
@@ -116,6 +121,12 @@ const Editing = () => {
       >
         <Input />
       </Form.Item>
+      <Wrapper.ButtonWrapper>
+        <Button>Cancel</Button>
+        <Button htmlType="submit" type="primary">
+          Update
+        </Button>
+      </Wrapper.ButtonWrapper>
     </Form>
   );
 };

@@ -5,37 +5,38 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { switchUserModalVisibility } from "../../../../../redux/modalSlice";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { switchSetSelectedUserID } from "../../../../../redux/userSlice";
+import { setSelectedUser } from "../../../../../redux/userSlice";
 import { Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 
-const RoomComponent = ({ clienteInfo }) => {
+const RoomComponent = ({ roomValue, clienteValue }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const useQuery = useQueryHandler();
 
   const { data, isLoading } = useQuery({
-    queryLink: `/accomodation/5-1/user?_id=${clienteInfo?.userID}`,
-    queryKey: `user/${clienteInfo?.userID}`,
-    method: "GET",
+    queryLink: `/accomodation/5-1/user?_id=${clienteValue?.userID}`,
+    queryKey: `user/${clienteValue?.userID}`,
   });
 
   return (
     <Room
-      color={clienteInfo.userID ? "red" : "processing"}
+      color={clienteValue.userID ? "red" : "processing"}
       onClick={() => {
         if (!isLoading) {
           dispatch(switchUserModalVisibility());
           dispatch(
-            switchSetSelectedUserID({
-              ...clienteInfo,
-              mutationBuildingNumber: "5-1",
+            setSelectedUser({
+              userID: clienteValue.userID,
+              buildingMutation: "5-1",
+              clienteValue,
+              roomValue,
             })
           );
         }
       }}
     >
-      {clienteInfo?.isBooked && (
+      {clienteValue?.isBooked && (
         <Tooltip placement="top" title={t("booking.title")}>
           <BookedTag color="warning">
             <ExclamationCircleOutlined />
@@ -44,7 +45,7 @@ const RoomComponent = ({ clienteInfo }) => {
       )}
       {isLoading && <LoadingOutlined />}
       {!isLoading &&
-        clienteInfo.userID &&
+        clienteValue.userID &&
         dayjs(Number(data?.endDate)).diff(new Date().toDateString(), "d")}
     </Room>
   );

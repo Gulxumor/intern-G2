@@ -16,21 +16,37 @@ const Mapping = () => {
   const queryClient = useQueryClient();
   const data = queryClient.getQueryData("accomodation/2");
 
-  const statusChecker = (isBooked, userID, clienteID) => {
-    if (isBooked) return <BookedRoom key={clienteID} />;
-    else if (userID) return <Room key={clienteID} userID={userID} />;
-    return <EmptyRoom key={clienteID} />;
+  const statusChecker = (clienteValue, roomValue) => {
+    if (clienteValue.isBooked)
+      return (
+        <BookedRoom
+          key={clienteValue.clienteID}
+          clienteValue={clienteValue}
+          roomValue={roomValue}
+        />
+      );
+    else if (clienteValue.userID)
+      return (
+        <Room
+          key={clienteValue.clienteID}
+          roomValue={roomValue}
+          clienteValue={clienteValue}
+        />
+      );
+    else return <EmptyRoom key={clienteValue.clienteID} />;
   };
 
   return (
     <MainRoomWrapper>
       <UserModal />
-      {data?.map(({ _id, roomNumber, cliente }) => (
-        <RoomWrapper key={_id}>
-          <RoomTitle>{`${roomNumber} ${t("empty_places.room")}`}</RoomTitle>
+      {data?.map((roomValue) => (
+        <RoomWrapper key={roomValue._id}>
+          <RoomTitle>{`${roomValue.roomNumber} ${t(
+            "empty_places.room"
+          )}`}</RoomTitle>
           <RoomContainer>
-            {cliente?.map(({ isBooked, userID, clienteID }) =>
-              statusChecker(isBooked, userID, clienteID)
+            {roomValue.cliente?.map((clienteValue) =>
+              statusChecker(clienteValue, roomValue)
             )}
           </RoomContainer>
         </RoomWrapper>

@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
-import BookedRoom from "../../SecondBuilding/Mapping/BookedRoom";
-import EmptyRoom from "../../SecondBuilding/Mapping/EmptyRoom";
-import Third from "../Third";
+import BookedRoom from "./BookedRoom";
+import EmptyRoom from "./EmptyRoom";
+import Room from "./Room";
 import {
   MainRoomWrapper,
   RoomContainer,
@@ -12,7 +12,7 @@ import {
 
 const statusChecker = (isBooked, userID, clienteID) => {
   if (isBooked) return <BookedRoom key={clienteID} />;
-  else if (userID) return <Third key={clienteID} userID={userID} />;
+  else if (userID) return <Room key={clienteID} userID={userID} />;
   return <EmptyRoom key={clienteID} />;
 };
 

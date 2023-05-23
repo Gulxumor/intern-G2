@@ -14,6 +14,7 @@ const UserModal = () => {
       open={userModalVisibility}
       onCancel={() => dispatch(switchUserModalVisibility())}
       onOk={() => dispatch(switchUserModalVisibility())}
+      footer={false}
     >
       <SegmentedSection />
     </Modal>

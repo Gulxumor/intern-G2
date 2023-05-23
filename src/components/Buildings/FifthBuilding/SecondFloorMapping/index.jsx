@@ -22,7 +22,7 @@ const FirstFloorMapping = () => {
     <MenuWrapper>
       <MainRoomWrapper floor>
         <FloorTitle>2 {t("empty_places.buildingFloor.floor")}</FloorTitle>
-        {/* {!data && <Alert message="Сервер не может ответить!" type="error" />} */}
+        {!data && <Alert message="Сервер не может ответить!" type="error" />}
         <>
           {data?.map((roomValue) => (
             <RoomWrapper key={roomValue?._id}>
@@ -34,7 +34,7 @@ const FirstFloorMapping = () => {
                   !value.userID && !value.isBooked ? (
                     <EmptyRoom
                       key={value?.clienteID}
-                      clienteInfo={{
+                      clienteValue={{
                         ...value,
                         roomNumber: roomValue?.roomNumber,
                         roomOrder: roomValue?.roomOrder,
@@ -46,7 +46,7 @@ const FirstFloorMapping = () => {
                   ) : value.userID ? (
                     <Room
                       key={value?.clienteID}
-                      clienteInfo={{
+                      clienteValue={{
                         ...value,
                         roomNumber: roomValue?.roomNumber,
                         roomOrder: roomValue?.roomOrder,
@@ -58,7 +58,7 @@ const FirstFloorMapping = () => {
                   ) : (
                     <BookedRoom
                       key={value?.clienteID}
-                      clienteInfo={{
+                      clienteValue={{
                         ...value,
                         roomNumber: roomValue?.roomNumber,
                         roomOrder: roomValue?.roomOrder,

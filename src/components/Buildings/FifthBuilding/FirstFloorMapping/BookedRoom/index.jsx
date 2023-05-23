@@ -2,11 +2,11 @@ import { BookedTag, Room } from "../../../../../generic/Style";
 import { useDispatch } from "react-redux";
 import { switchUserModalVisibility } from "../../../../../redux/modalSlice";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { switchSetSelectedUserID } from "../../../../../redux/userSlice";
+import { setSelectedUser } from "../../../../../redux/userSlice";
 import { Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
 
-const BookedRoom = ({ clienteInfo }) => {
+const BookedRoom = ({ clienteValue, roomValue }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   return (
@@ -15,14 +15,16 @@ const BookedRoom = ({ clienteInfo }) => {
       onClick={() => {
         dispatch(switchUserModalVisibility());
         dispatch(
-          switchSetSelectedUserID({
-            ...clienteInfo,
-            mutationBuildingNumber: "5-1",
+          setSelectedUser({
+            userID: clienteValue.userID,
+            buildingMutation: "5-1",
+            clienteValue,
+            roomValue,
           })
         );
       }}
     >
-      {clienteInfo?.isBooked && (
+      {clienteValue?.isBooked && (
         <Tooltip placement="top" title={t("booking.title")}>
           <BookedTag color="warning">
             <ExclamationCircleOutlined />

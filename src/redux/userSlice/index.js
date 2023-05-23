@@ -3,13 +3,17 @@ import { createSlice } from "@reduxjs/toolkit";
 const UserSlice = createSlice({
   name: "UserSlice",
   initialState: {
-    selectedUserID: "",
+    selectedUser: {
+      userID: "",
+      buildingMutation: "",
+      clienteValue: {},
+    },
   },
   reducers: {
-    switchSetSelectedUserID(state, { payload }) {
-      state.selectedUserID = payload;
+    setSelectedUser(state, { payload }) {
+      state.selectedUser = payload;
     },
   },
 });
 export default UserSlice.reducer;
-export const { switchSetSelectedUserID } = UserSlice.actions;
+export const { setSelectedUser } = UserSlice.actions;

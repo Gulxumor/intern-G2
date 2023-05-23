@@ -34,7 +34,7 @@ const FirstFloorMapping = () => {
                   !value.userID && !value.isBooked ? (
                     <EmptyRoom
                       key={value?.clienteID}
-                      clienteInfo={{
+                      clienteValue={{
                         ...value,
                         roomNumber: roomValue?.roomNumber,
                         roomOrder: roomValue?.roomOrder,
@@ -46,7 +46,7 @@ const FirstFloorMapping = () => {
                   ) : value.userID ? (
                     <Room
                       key={value?.clienteID}
-                      clienteInfo={{
+                      clienteValue={{
                         ...value,
                         roomNumber: roomValue?.roomNumber,
                         roomOrder: roomValue?.roomOrder,
@@ -58,7 +58,7 @@ const FirstFloorMapping = () => {
                   ) : (
                     <BookedRoom
                       key={value?.clienteID}
-                      clienteInfo={{
+                      clienteValue={{
                         ...value,
                         roomNumber: roomValue?.roomNumber,
                         roomOrder: roomValue?.roomOrder,

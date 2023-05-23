@@ -2,7 +2,7 @@ import { Room } from "../../../../../generic/Style";
 import { Button, Modal } from "antd";
 import { ConfirmModalButtonWrapper } from "../Room/style";
 import { useDispatch } from "react-redux";
-import { switchSetSelectedUserID } from "../../../../../redux/userSlice";
+import { setSelectedUser } from "../../../../../redux/userSlice";
 import { useTranslation } from "react-i18next";
 import {
   switchAddBookingModalVisibility,
@@ -11,12 +11,17 @@ import {
 
 const { confirm } = Modal;
 
-const EmptyRoom = ({ clienteInfo }) => {
+const EmptyRoom = ({ clienteValue, roomValue }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const onClickHandler = () => {
     dispatch(
-      switchSetSelectedUserID({ ...clienteInfo, mutationBuildingNumber: "5-1" })
+      setSelectedUser({
+        userID: clienteValue.userID,
+        buildingMutation: "5-1",
+        clienteValue,
+        roomValue,
+      })
     );
     return confirm({
       title: t("empty_places.information.empty_place_error"),

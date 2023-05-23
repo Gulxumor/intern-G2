@@ -37,7 +37,7 @@ const FifthBuilding = () => {
           <>
             <FirstFloorMapping /> <SecondFloorMapping />
           </>
-        )}{" "}
+        )}
       </Wrapper.MapWrapper>
     </Wrapper>
   );

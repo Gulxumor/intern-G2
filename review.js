@@ -20,3 +20,6 @@ function acronym(inp) {
 
 console.log(acronym("Code Wars"));
 */
+
+
+// fetch("https://restcountries.com/v3.1/name/{name}?fullText=true").then(response => response.json()).then(json => console.log(json))

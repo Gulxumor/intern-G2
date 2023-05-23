@@ -8,11 +8,13 @@ export const Wrapper = styled.div`
     flex-direction: column;
 `
 Wrapper.MapWrapper = styled.div`
-  width: 650px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   grid-gap: 20px;
+  margin-bottom: 50px;
+
   @media (max-width: 650px) {
     width: 100%;
   }

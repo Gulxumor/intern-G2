@@ -13,3 +13,9 @@ Wrapper.InfoWrap.Value = styled.div`
     margin-top: 10px;
     flex: 1;
 `
+Wrapper.ButtonWrapper = styled.div`
+    display: flex;
+    gap: 20px;
+    justify-content: end;
+    margin-top: 20px;
+`
