@@ -5,7 +5,7 @@ import { LeftOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { Title } from "../../../generic/Style";
 import { useQueryHandler } from "../../../hooks/useQuery";
-// import UserModal from "../Common/UserModal";
+import UserModal from "../Common/UserModal";
 import FirstFloorMapping from "./FirstFloorMapping";
 import SecondFloorMapping from "./SecondFloorMapping";
 import ThirdFloorMapping from "./ThirdFloorMapping";
@@ -29,7 +29,7 @@ const SixthBuilding = () => {
 
   return (
     <Wrapper>
-      {/* <UserModal /> */}
+      <UserModal />
       <Title>
         <LeftOutlined onClick={() => navigate(-1)} />
         {`6 ${t("empty_places.building")}`}

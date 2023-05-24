@@ -12,9 +12,8 @@ import { useTranslation } from "react-i18next";
 const RoomComponent = ({ clienteValue, roomValue }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const useQuery = useQueryHandler();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading } = useQueryHandler({
     queryLink: `/accomodation/6-1/user?_id=${clienteValue?.userID}`,
     queryKey: `user/${clienteValue?.userID}`,
   });
