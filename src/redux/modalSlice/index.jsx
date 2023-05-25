@@ -6,6 +6,7 @@ const ModalSlice = createSlice({
     profileModalVisibility: false,
     localeModalVisibility: false,
     userModalVisibility: false,
+    bookedUserModalVisibility: false,
     userAddModalVisibility: {
       open: false,
       loading: false,
@@ -17,11 +18,7 @@ const ModalSlice = createSlice({
     bookedUserActivateModalVisibility: {
       open: false,
       loading: false,
-    },
-    movingModalVisibility: { open: false, loading: false },
-    bookedUserUpdateModalVisibility: false,
-    bookedUserDetailedModalVisibility: false,
-    reportOptionModalVisibility: false,
+    }, 
   },
   reducers: {
     switchProfileModalVisibility(state) {
@@ -33,41 +30,20 @@ const ModalSlice = createSlice({
     switchUserModalVisibility(state) {
       state.userModalVisibility = !state.userModalVisibility;
     },
+    //*************************************************************************************************************** */
     switchAddUserModalVisibility(state, { payload }) {
       state.userAddModalVisibility = {
         ...payload,
       };
     },
-    switchBookedUserActivateModalVisibility(state, { payload }) {
-      state.bookedUserActivateModalVisibility = {
-        ...payload,
-      };
-    },
+  
+    //*************************************************************************************************************** */
     switchAddBookingModalVisibility(state, { payload }) {
       state.bookingAddModalVisibility = {
         ...payload,
       };
     },
-    switchUpdateBookingModalVisibility(state) {
-      state.bookedUserUpdateModalVisibility =
-        !state.bookedUserUpdateModalVisibility;
-    },
-    switchBookedUserDetailedModalVisibility(state) {
-      state.bookedUserDetailedModalVisibility =
-        !state.bookedUserDetailedModalVisibility;
-    },
-    switchBookedUserModalVisibility(state) {
-      state.bookedUserModalVisibility = !state.bookedUserModalVisibility;
-    },
-    switchReportOptionsModalVisibility(state) {
-      state.reportOptionModalVisibility = !state.reportOptionModalVisibility;
-    },
-    switchMovingModalVisibility(state, { payload }) {
-      state.movingModalVisibility = {
-        ...payload,
-      };
-    },
-  },
+  }
 });
 export default ModalSlice.reducer;
 export const {
