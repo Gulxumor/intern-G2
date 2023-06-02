@@ -96,6 +96,12 @@ export const uzLotin = {
         },
         buildingFloor: {
             floor: "Qavat"
-        }
+        },
+        notification: {
+            not_found: "Foydalanuvchi topilmadi",
+            number_wrong: "Telefon raqam yoki parol xato",
+            not_filling_error: "Iltimos, barcha bo'shliqlarni to'ldiring",
+            missing_status: "Status yetishmayabdi"
+        },
     },
 }

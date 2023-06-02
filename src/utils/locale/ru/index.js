@@ -97,6 +97,12 @@ export const ru = {
         },
         buildingFloor: {
             floor: "Этаж"
-        }
+        },
+        notification: {
+            not_found: "Пользователь не найден",
+            number_wrong: "Номер телефона или пароль неверный",
+            not_filling_error: "Пожалуйста, заполните все поля",
+            missing_status: "Отсутствует статус"
+        },
     },
 }

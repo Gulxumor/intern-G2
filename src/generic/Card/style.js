@@ -26,10 +26,3 @@ export const Image = styled.img`
     height: 192px;
     margin-bottom: 30px;
 `
-
-
-
-export const gfrsdbf = styled.div``
-export const gferrbf = styled.div``
-export const gfhrbf = styled.div``
-

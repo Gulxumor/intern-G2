@@ -26,7 +26,7 @@ export const path = [
     },
     {
         id: 2,
-        path: "/all-users/",
+        path: "/all-users",
         element: < AllUsers />
     },
     {
@@ -85,7 +85,6 @@ export const path = [
                         element: <FifthBuilding />,
                     },
                 ]
-
             },
             {
                 id: "5-3",

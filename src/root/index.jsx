@@ -55,7 +55,7 @@ const Root = () => {
             )
           )}
         </Route>
-          <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

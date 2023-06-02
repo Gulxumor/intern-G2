@@ -39,7 +39,7 @@ const useDropDownApi = () => {
             <LoginOutlined /> {t("modal.log_out")}
           </MenuWrapper>
         ),
-        key: "3",
+        key: "2",
       },
     ];
   };

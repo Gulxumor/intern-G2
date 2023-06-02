@@ -99,5 +99,11 @@ export const uzKrill = {
         buildingFloor: {
             floor: "Қават"
         },
+        notification: {
+            not_found: "Фойдаланувчи топилмади",
+            number_wrong: "Телефон рақам ёки парол хато",
+            not_filling_error: "Илтимос, барча бўшлиқларни тўлдиринг",
+            missing_status: "Статус етишмаябди"
+        },
     },
 }

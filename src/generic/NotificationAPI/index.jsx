@@ -1,12 +1,15 @@
 import { notification } from "antd";
-
-const notFoundError = {
-  message: "User not found",
-  description: "Phone number or password is wrong",
-};
-const notFillingError = { message: "Please fill all the fields" };
+import { useTranslation } from "react-i18next";
 
 export const useNotificationAPI = () => {
+  const { t } = useTranslation();
+  const notFoundError = {
+    message: t("empty_places.notification.not_found"),
+    description: t("empty_places.notification.number_wrong"),
+  };
+  const notFillingError = {
+    message: t("empty_places.notification.not_filling_error"),
+  };
   return (status) => {
     switch (status) {
       case 409:
@@ -14,7 +17,9 @@ export const useNotificationAPI = () => {
       case 400:
         return notification.error(notFillingError);
       default:
-        return notification.error({ message: "Missing status" });
+        return notification.error({
+          message: t("empty_places.notification.missing_status"),
+        });
     }
   };
 };

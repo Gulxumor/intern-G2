@@ -6,6 +6,8 @@ import { Title } from "../../../generic/Style";
 import Mapping from "./Mapping";
 import { useTranslation } from "react-i18next";
 import { useQueryHandler } from "../../../hooks/useQuery";
+import UserModal from "../Common/UserModal";
+import AddUser from "../Common/User/AddUser";
 
 const SecondBuilding = () => {
   const { t } = useTranslation();
@@ -18,6 +20,8 @@ const SecondBuilding = () => {
 
   return (
     <Wrapper>
+      <UserModal />
+      <AddUser/>
       <Title>
         <LeftOutlined onClick={() => navigate(-1)} />
         {`2 ${t("empty_places.building")}`}

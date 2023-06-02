@@ -3,7 +3,12 @@ export const en = {
         settings: "Settings",
         change_lang: "Change language",
         log_out: "Log Out",
-        profileModal: {
+        add_user: "Add user",
+        add_booking: "Add booking",
+        oridinary: "Oridinary",
+        voucher:"Voucher"
+        
+        ,profileModal: {
             profile: "Profile",
             name: "Name",
             surname: "Surname",
@@ -96,6 +101,12 @@ export const en = {
         },
         buildingFloor: {
             floor:"Floor"
-        }
+        },
+        notification:{
+            not_found:"User not found",
+            number_wrong:"Phone number or password is wrong",
+            not_filling_error:"Please fill all the fields",
+            missing_status:"Missing status"
+        },
     },
 }
