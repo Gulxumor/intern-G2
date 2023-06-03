@@ -146,10 +146,10 @@ const Observing = () => {
             </Wrapper.InfoWrap.Value>
           </Wrapper.InfoWrap>
           <Wrapper.ButtonWrapper>
-            <Button>Cancel</Button>
-            <Button type="primary">Move</Button>
+            <Button>{t("empty_places.information.cancel")}</Button>
+            <Button type="primary">{t("empty_places.information.move")}</Button>
             <Button danger type="primary">
-              Edit
+              {t("empty_places.information.edit")}
             </Button>
           </Wrapper.ButtonWrapper>
         </>

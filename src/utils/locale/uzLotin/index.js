@@ -3,6 +3,10 @@ export const uzLotin = {
         settings: "Sozlamalar",
         change_lang: "Tilni o'zgartirish",
         log_out: "Chiqish",
+        add_user: "Qo'shish",
+        add_booking: "Bronlash",
+        oridinary: "Oddiy",
+        voucher: "Voucher",
         profileModal: {
             profile: "Profil",
             name: "Ism",
@@ -77,7 +81,12 @@ export const uzLotin = {
             delete: "Oʻchirish",
             empty_place_error: "Bo'sh joy",
             this_place_is_empty: `Bu joy bo'sh. Yangi foydalanuvchi qo'shish uchun "Qo'shish" tugmasini bosing. Yoki bu joyni band qilish uchun "Band qilish" tugmasini bosing.`,
-            book: "Band qilish"
+            book: "Bronlash",
+            voucher_cost: "Voucher narxi",
+            voucher_number: "Voucher raqami",
+            work: "Ish joyi va lavozimWork place and position",
+            given_by: "Voucher bergan tashkilot",
+            prepaid: "Oldindan to'lov",
         },
         booked_places: {
             error_message: "Hech qanday band qilingan joy yo'q!",
@@ -92,7 +101,12 @@ export const uzLotin = {
             address_error: "Iltimos, manzilni kiriting",
             daily_price_error: "Iltimos, kundalik narxni kiriting",
             cash_error: "Iltimos, naqd to'lovni kirting!",
-            card_error: "Iltimos, karta orqali to'lovni kirting!"
+            card_error: "Iltimos, karta orqali to'lovni kirting!",
+            cost_error: "Iltimos, voucher narxini kiriting!",
+            number_error: "Iltimos, voucher raqamini kiriting!",
+            work_error: "Iltimos, ish joyi va lavozimini kiriting!",
+            given_error: "Iltimos, voucher bergan tashkilotni kiriting!",
+            prepaid_error: "Iltimos, oldindan to'lovni kiriting!",
         },
         buildingFloor: {
             floor: "Qavat"

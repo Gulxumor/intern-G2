@@ -11,8 +11,8 @@ const EmptyBooking = () => {
         status="404"
       />
       <ButtonWrapper>
-        <Button>Cancel</Button>
-        <Button type="primary">Add</Button>
+        <Button>{t("empty_places.information.cancel")}</Button>
+        <Button type="primary">{t("empty_places.information.add")}</Button>
       </ButtonWrapper>
     </div>
   );

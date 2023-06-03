@@ -6,9 +6,8 @@ export const en = {
         add_user: "Add user",
         add_booking: "Add booking",
         oridinary: "Oridinary",
-        voucher:"Voucher"
-        
-        ,profileModal: {
+        voucher: "Voucher",
+        profileModal: {
             profile: "Profile",
             name: "Name",
             surname: "Surname",
@@ -82,7 +81,12 @@ export const en = {
             delete: "Delete",
             empty_place_error: "Empty Place",
             this_place_is_empty: "This place is empty. Click the «Add» button to add a new user. Or click to the «Book» button to book this place.",
-            book: "Book"
+            book: "Book",
+            voucher_cost: "Voucher cost",
+            voucher_number: "Voucher number",
+            work: "Work place and position",
+            given_by: "Voucher given by (Organization...)",
+            prepaid: "Prepaid",
         },
         booked_places: {
             error_message: "There is no any booked places!",
@@ -97,7 +101,12 @@ export const en = {
             address_error: "Please enter your address",
             daily_price_error: "Please enter your daily price",
             cash_error: "Please enter your pay by cash",
-            card_error: "Please enter your pay by card"
+            card_error: "Please enter your pay by card",
+            cost_error: "Please, enter voucher cost!",
+            number_error: "Please, enter voucher number!",
+            work_error: "Please, enter work place and position!",
+            given_error: "Please, enter voucher given Organization",
+            prepaid_error: "Please, enter prepaid amount!",
         },
         buildingFloor: {
             floor:"Floor"

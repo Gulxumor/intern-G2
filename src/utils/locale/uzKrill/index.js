@@ -3,6 +3,10 @@ export const uzKrill = {
         settings: "Созламалар",
         change_lang: "Тилни ўзгартириш",
         log_out: "Чиқиш",
+        add_user: "Қўшиш",
+        add_booking: "Бронлаш",
+        oridinary: "Оддий",
+        voucher: "Воучер",
         profileModal: {
             profile: "Профил",
             name: "Исм ",
@@ -79,7 +83,12 @@ export const uzKrill = {
             delete: "Ўчириш",
             empty_place_error: "Ўрин бўш",
             this_place_is_empty: "Бу ўрин бўш. Янги фойдаланувчи қўшиш учун «Қўшиш» тугмасини босинг. Ёки бу жойни банд қилиш учун «Бронлаш» тугмасини босинг.",
-            book: "Бронлаш"
+            book: "Бронлаш",
+            voucher_cost: "Воучер нарх",
+            voucher_number: "Воучер рақам",
+            work: "Иш жойи ва лавозим",
+            given_by: "Воучер берган ташкилот",
+            prepaid:"Олдиндан тўлов",
         },
         booked_places: {
             error_message: "Бронланган жойлар мавжуд емас!",
@@ -94,7 +103,12 @@ export const uzKrill = {
             address_error: "Илтимос, адрессни киритинг!",
             daily_price_error: "Илтимос, кунлик нархни киритинг!",
             cash_error: "Илтимос, нақд тўловни киртинг!",
-            card_error: "Илтимос, карта орқали тўловни киртинг!"
+            card_error: "Илтимос, карта орқали тўловни киртинг!",
+            cost_error: "Илтимос, воучер нархини киритинг!",
+            number_error: "Илтимос, воучер рақамини киритинг!",
+            work_error: "Илтимос, иш жойи ва лавозимини киритинг!",
+            given_error: "Илтимос, воучер берган ташкилотни киритинг!",
+            prepaid_error:"Илтимос, олдиндан тўловни киритинг!",
         },
         buildingFloor: {
             floor: "Қават"

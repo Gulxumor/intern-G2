@@ -2,7 +2,10 @@ import { Room } from "../../../../../generic/Style";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Modal } from "antd";
-import { switchAddUserModalVisibility } from "../../../../../redux/modalSlice";
+import {
+  switchAddUserModalVisibility,
+  switchUserAddBookingModalVisibility,
+} from "../../../../../redux/modalSlice";
 
 const { confirm } = Modal;
 
@@ -16,6 +19,9 @@ const EmptyRoom = () => {
       closable: true,
       cancelText: t("empty_places.information.book"),
       okText: t("empty_places.information.add"),
+      onCancel: () => {
+        dispatch(switchUserAddBookingModalVisibility());
+      },
       onOk: () => {
         dispatch(switchAddUserModalVisibility());
       },

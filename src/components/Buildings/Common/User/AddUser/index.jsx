@@ -17,6 +17,7 @@ const AddUser = () => {
       onCancel={() => dispatch(switchAddUserModalVisibility())}
       title={t("modal.add_booking")}
       okText={t("empty_places.information.add")}
+      footer={false}
     >
       <Segmented
         block

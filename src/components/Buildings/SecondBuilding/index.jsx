@@ -1,17 +1,15 @@
 import { Spin } from "antd";
 import { Wrapper } from "./style";
-import { LeftOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
 import { Title } from "../../../generic/Style";
 import Mapping from "./Mapping";
 import { useTranslation } from "react-i18next";
 import { useQueryHandler } from "../../../hooks/useQuery";
-import UserModal from "../Common/UserModal";
 import AddUser from "../Common/User/AddUser";
+import AddBooking from "../Common/UserModal/Booking/AddBooking";
+import Arrow from "../../../generic/Arrow";
 
 const SecondBuilding = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   const { isLoading } = useQueryHandler({
     queryKey: "accomodation/2",
@@ -20,10 +18,10 @@ const SecondBuilding = () => {
 
   return (
     <Wrapper>
-      <UserModal />
-      <AddUser/>
+      <AddUser />
+      <AddBooking />
       <Title>
-        <LeftOutlined onClick={() => navigate(-1)} />
+        <Arrow />
         {`2 ${t("empty_places.building")}`}
       </Title>
       {isLoading ? <Spin /> : <Mapping />}
