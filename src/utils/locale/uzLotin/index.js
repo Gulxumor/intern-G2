@@ -84,9 +84,10 @@ export const uzLotin = {
             book: "Bronlash",
             voucher_cost: "Voucher narxi",
             voucher_number: "Voucher raqami",
-            work: "Ish joyi va lavozimWork place and position",
+            work: "Ish joyi va lavozim",
             given_by: "Voucher bergan tashkilot",
             prepaid: "Oldindan to'lov",
+            update:"Yangilash"
         },
         booked_places: {
             error_message: "Hech qanday band qilingan joy yo'q!",

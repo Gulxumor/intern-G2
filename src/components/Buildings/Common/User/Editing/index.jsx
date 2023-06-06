@@ -122,9 +122,9 @@ const Editing = () => {
         <Input />
       </Form.Item>
       <Wrapper.ButtonWrapper>
-        <Button>Cancel</Button>
+        <Button>{t("empty_places.information.cancel")}</Button>
         <Button htmlType="submit" type="primary">
-          Update
+          {t("empty_places.information.update")}
         </Button>
       </Wrapper.ButtonWrapper>
     </Form>

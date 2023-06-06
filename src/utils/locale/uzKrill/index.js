@@ -88,7 +88,8 @@ export const uzKrill = {
             voucher_number: "Воучер рақам",
             work: "Иш жойи ва лавозим",
             given_by: "Воучер берган ташкилот",
-            prepaid:"Олдиндан тўлов",
+            prepaid: "Олдиндан тўлов",
+            update:"Янгилаш"
         },
         booked_places: {
             error_message: "Бронланган жойлар мавжуд емас!",

@@ -87,6 +87,7 @@ export const en = {
             work: "Work place and position",
             given_by: "Voucher given by (Organization...)",
             prepaid: "Prepaid",
+            update:"Update",
         },
         booked_places: {
             error_message: "There is no any booked places!",

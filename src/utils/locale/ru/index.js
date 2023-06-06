@@ -88,6 +88,7 @@ export const ru = {
             work: "Рабочее место и должность",
             given_by: "Ваучер предоставлен (Организация...)",
             prepaid: "Предоплата",
+            update:"Обновлять"
         },
         booked_places: {
             error_message: "Забронированных мест нет!",

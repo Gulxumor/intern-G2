@@ -8,7 +8,7 @@ import { Wrapper } from "./style";
 const AddBooking = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { UserAddBookingModalVisibility } = useSelector((state) => state.modal);
+  const { userAddBookingModalVisibility } = useSelector((state) => state.modal);
   const { selectedUser } = useSelector((state) => state.user);
   const { RangePicker } = DatePicker;
   const queryClient = useQueryClient();
@@ -18,7 +18,7 @@ const AddBooking = () => {
   return (
     <Modal
       okText={t("empty_places.information.add")}
-      open={UserAddBookingModalVisibility}
+      open={userAddBookingModalVisibility}
       title={t("modal.add_booking")}
       onCancel={() => dispatch(switchUserAddBookingModalVisibility())}
       footer={false}
