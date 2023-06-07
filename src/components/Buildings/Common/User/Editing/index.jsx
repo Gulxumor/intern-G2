@@ -1,17 +1,34 @@
 import { Button, DatePicker, Form, Input } from "antd";
-import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import EmptySpace from "../EmptySpace";
 import { Wrapper } from "./style";
+import dayjs from "dayjs";
+import { useUpdatedUser } from "../../../../../hooks/useQuery/useQueryActions";
 
 const Editing = () => {
+  const { mutate } = useUpdatedUser();
   const { selectedUser } = useSelector((state) => state.user);
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData(`user/${selectedUser.userID}`);
   const { RangePicker } = DatePicker;
   const { t } = useTranslation();
+
+  const onsubmit = (e) => {
+    console.log(e);
+
+    const updatedUserData = {
+      ...userData,
+      ...e,
+      birthDate: new Date(e.birthDate.$d).getTime(),
+      arrivalDate: new Date(e.range[0].$d).getTime(),
+      endDate: new Date(e.range[1].$d).getTime(),
+    };
+    delete updatedUserData.range;
+    mutate({ body: updatedUserData });
+  };
+
   return !selectedUser.userID ? (
     <EmptySpace />
   ) : (
@@ -28,15 +45,16 @@ const Editing = () => {
         width: "100%",
         marginTop: "20px",
       }}
+      onFinish={onsubmit}
       initialValues={{
         fullName: userData?.fullName,
         birthDate: dayjs(userData?.birthDate),
-        passportNumber: userData?.passportID,
+        passportID: userData?.passportID,
         phoneNumber: userData?.phoneNumber,
         address: userData?.address,
-        price: userData?.dayCost,
-        cash: userData?.paidByCash,
-        card: userData?.paidByPlasticCard,
+        dayCost: userData?.dayCost,
+        paidByCash: userData?.paidByCash,
+        paidByPlasticCard: userData?.paidByPlasticCard,
         range: [dayjs(+userData?.arrivalDate), dayjs(+userData?.endDate)],
       }}
     >
@@ -61,7 +79,7 @@ const Editing = () => {
           { required: true, message: t("empty_places.edit.pass_number_error") },
         ]}
         label={t("empty_places.information.passport_number")}
-        name={"passportNumber"}
+        name={"passportID"}
       >
         <Input />
       </Form.Item>
@@ -102,21 +120,21 @@ const Editing = () => {
         rules={[
           { required: true, message: t("empty_places.edit.daily_price_error") },
         ]}
-        name={"price"}
+        name={"dayCost"}
         label={t("empty_places.information.daily_price")}
       >
         <Input />
       </Form.Item>
       <Form.Item
         rules={[{ required: true, message: t("empty_places.edit.cash_error") }]}
-        name={"cash"}
+        name={"paidByCash"}
         label={t("empty_places.information.pay_by_cash")}
       >
         <Input />
       </Form.Item>
       <Form.Item
         rules={[{ required: true, message: t("empty_places.edit.card_error") }]}
-        name={"card"}
+        name={"paidByPlasticCard"}
         label={t("empty_places.information.pay_by_card")}
       >
         <Input />
