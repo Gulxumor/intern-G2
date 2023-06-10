@@ -1,16 +1,29 @@
-import { Button, DatePicker, Form, Input } from "antd";
+import { Button, DatePicker, Form, Input, Select } from "antd";
 import { useTranslation } from "react-i18next";
-import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
+import useSelectAPI from "../../../../../../generic/SelectAPI";
+import { useAddUser } from "../../../../../../hooks/useQuery/useQueryActions";
 import { Wrapper } from "./style";
 
 const OridinaryUser = () => {
   const { selectedUser } = useSelector((state) => state.user);
   const { RangePicker } = DatePicker;
-  const queryClient = useQueryClient();
-  const userData = queryClient.getQueryData(`user/${selectedUser.userID}`);
-  console.log(userData);
   const { t } = useTranslation();
+  const { mutate } = useAddUser();
+  const onFinish = (e) => {
+    const shouldAddData = {
+      ...e,
+      birthDate: new Date(e.birthDate.$d).getTime(),
+      arrivalDate: new Date(e.range[0].$d).getTime(),
+      endDate: new Date(e.range[1].$d).getTime(),
+      clienteID: selectedUser.clienteValue.clienteID,
+      hasVoucher: false,
+      roomID: selectedUser.roomValue._id,
+    };
+    delete shouldAddData.range;
+    mutate({ body: shouldAddData });
+  };
+
   return (
     <Form
       layout="vertical"
@@ -29,13 +42,14 @@ const OridinaryUser = () => {
         buildingNumber: `${t("all_users.building")}-${
           selectedUser.buildingMutation
         }`,
-        roomNumber: selectedUser.userID,
+        roomNumber: selectedUser.roomValue.roomNumber,
       }}
+      onFinish={onFinish}
     >
       <Form.Item
         rules={[{ required: true, message: t("empty_places.edit.name_error") }]}
         label={t("empty_places.information.full_name")}
-        name="full name"
+        name="fullName"
       >
         <Input />
       </Form.Item>
@@ -44,7 +58,7 @@ const OridinaryUser = () => {
           { required: true, message: t("empty_places.edit.birth_date_error") },
         ]}
         label={t("empty_places.information.birth_date")}
-        name="birth date"
+        name="birthDate"
       >
         <DatePicker />
       </Form.Item>
@@ -53,7 +67,7 @@ const OridinaryUser = () => {
           { required: true, message: t("empty_places.edit.pass_number_error") },
         ]}
         label={t("empty_places.information.passport_number")}
-        name="passport number"
+        name="passportID"
       >
         <Input />
       </Form.Item>
@@ -65,7 +79,7 @@ const OridinaryUser = () => {
           },
         ]}
         label={t("empty_places.information.phone_number")}
-        name="phone number"
+        name="phoneNumber"
       >
         <Input addonBefore="+998" />
       </Form.Item>
@@ -85,8 +99,8 @@ const OridinaryUser = () => {
         rules={[
           { required: true, message: t("empty_places.edit.address_error") },
         ]}
-        name={"address"}
         label={t("empty_places.information.address")}
+        name="address"
       >
         <Input />
       </Form.Item>
@@ -95,22 +109,21 @@ const OridinaryUser = () => {
           { required: true, message: t("empty_places.edit.daily_price_error") },
         ]}
         label={t("empty_places.information.daily_price")}
-        name="daily price"
+        name="dayCost"
       >
         <Input type="number" />
       </Form.Item>
       <Form.Item
         rules={[{ required: true }]}
         label={t("empty_places.information.building_number")}
-        name="building number"
+        name="buildingNumber"
       >
-        {/* <Select disabled /> */}
-        <Input disabled />
+        <Select disabled options={useSelectAPI()} />
       </Form.Item>
       <Form.Item
         rules={[{ required: true }]}
         label={t("empty_places.information.room_number")}
-        name="room number"
+        name="roomNumber"
       >
         <Input disabled />
       </Form.Item>

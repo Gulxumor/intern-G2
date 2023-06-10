@@ -1,6 +1,6 @@
 import { Button, DatePicker, Form, Input, Modal } from "antd";
 import { useTranslation } from "react-i18next";
-import { useQueryClient } from "react-query";
+// import { useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { switchUserAddBookingModalVisibility } from "../../../../../../redux/modalSlice";
 import { Wrapper } from "./style";
@@ -11,9 +11,8 @@ const AddBooking = () => {
   const { userAddBookingModalVisibility } = useSelector((state) => state.modal);
   const { selectedUser } = useSelector((state) => state.user);
   const { RangePicker } = DatePicker;
-  const queryClient = useQueryClient();
-  const userData = queryClient.getQueryData(`user/${selectedUser.userID}`);
-  console.log(userData);
+  // const queryClient = useQueryClient();
+  // const userData = queryClient.getQueryData(`user/${selectedUser.userID}`);
 
   return (
     <Modal

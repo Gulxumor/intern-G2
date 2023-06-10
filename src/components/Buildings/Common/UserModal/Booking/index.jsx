@@ -9,14 +9,10 @@ const Booking = () => {
   const foundData = selectedUser?.roomValue?.roomValue?.bookedCliente?.find(
     (value) => value.bookedClienteID === cellID
   );
-  console.log(foundData, "foundData");
-  // console.log(cellID, "cellID");
-  // console.log(selectedUser);
 
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData(`user/${selectedUser.userData}`);
 
-  console.log(userData, "userData");
 
   return (
     <div>

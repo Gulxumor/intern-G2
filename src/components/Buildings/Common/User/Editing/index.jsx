@@ -16,8 +16,6 @@ const Editing = () => {
   const { t } = useTranslation();
 
   const onsubmit = (e) => {
-    console.log(e);
-
     const updatedUserData = {
       ...userData,
       ...e,

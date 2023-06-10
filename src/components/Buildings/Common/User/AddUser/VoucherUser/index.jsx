@@ -1,16 +1,16 @@
-import { Button, DatePicker, Form, Input } from "antd";
+import { Button, DatePicker, Form, Input, Select } from "antd";
 import { useTranslation } from "react-i18next";
-import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
+import useSelectAPI from "../../../../../../generic/SelectAPI";
 import { Wrapper } from "./style";
 
 const VoucherUser = () => {
   const { selectedUser } = useSelector((state) => state.user);
   const { RangePicker } = DatePicker;
-  const queryClient = useQueryClient();
-  const userData = queryClient.getQueryData(`user/${selectedUser.userID}`);
-  console.log(userData);
   const { t } = useTranslation();
+
+  const onFinish = (e) => {};
+
   return (
     <Form
       layout="vertical"
@@ -29,13 +29,14 @@ const VoucherUser = () => {
         buildingNumber: `${t("all_users.building")}-${
           selectedUser.buildingMutation
         }`,
-        roomNumber: selectedUser.userID,
+        roomNumber: selectedUser.roomValue.roomNumber,
       }}
+      onFinish={onFinish}
     >
       <Form.Item
         rules={[{ required: true, message: t("empty_places.edit.name_error") }]}
         label={t("empty_places.information.full_name")}
-        name="full name"
+        name="fullName"
       >
         <Input />
       </Form.Item>
@@ -44,7 +45,7 @@ const VoucherUser = () => {
           { required: true, message: t("empty_places.edit.birth_date_error") },
         ]}
         label={t("empty_places.information.birth_date")}
-        name="birth date"
+        name="birthDate"
       >
         <DatePicker />
       </Form.Item>
@@ -56,7 +57,7 @@ const VoucherUser = () => {
           },
         ]}
         label={t("empty_places.information.passport_number")}
-        name="passport number"
+        name="passportID"
       >
         <Input />
       </Form.Item>
@@ -68,7 +69,7 @@ const VoucherUser = () => {
           },
         ]}
         label={t("empty_places.information.phone_number")}
-        name="phone number"
+        name="phoneNumber"
       >
         <Input addonBefore="+998" />
       </Form.Item>
@@ -88,8 +89,8 @@ const VoucherUser = () => {
         rules={[
           { required: true, message: t("empty_places.edit.address_error") },
         ]}
-        name={"address"}
         label={t("empty_places.information.address")}
+        name="address"
       >
         <Input />
       </Form.Item>
@@ -102,7 +103,7 @@ const VoucherUser = () => {
           },
         ]}
         label={t("empty_places.information.voucher_cost")}
-        name="voucher cost"
+        name="dayCost"
       >
         <Input type="number" />
       </Form.Item>
@@ -149,15 +150,14 @@ const VoucherUser = () => {
       <Form.Item
         rules={[{ required: true }]}
         label={t("empty_places.information.building_number")}
-        name="building number"
+        name="buildingNumber"
       >
-        {/* <Select disabled /> */}
-        <Input disabled />
+        <Select disabled options={useSelectAPI()} />
       </Form.Item>
       <Form.Item
         rules={[{ required: true }]}
         label={t("empty_places.information.room_number")}
-        name="room number"
+        name="roomNumber"
       >
         <Input disabled />
       </Form.Item>

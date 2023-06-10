@@ -33,7 +33,14 @@ const Mapping = () => {
           clienteValue={clienteValue}
         />
       );
-    else return <EmptyRoom key={clienteValue.clienteID} />;
+    else
+      return (
+        <EmptyRoom
+          key={clienteValue.clienteID}
+          roomValue={roomValue}
+          clienteValue={clienteValue}
+        />
+      );
   };
 
   return (
