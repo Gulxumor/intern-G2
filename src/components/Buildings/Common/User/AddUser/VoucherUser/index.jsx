@@ -1,13 +1,14 @@
 import { Button, DatePicker, Form, Input, Select } from "antd";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import useSelectAPI from "../../../../../../generic/SelectAPI";
 import { Wrapper } from "./style";
+import useBuildingDetector from "../../../../../../tools/buildingDetectors";
 
 const VoucherUser = () => {
   const { selectedUser } = useSelector((state) => state.user);
   const { RangePicker } = DatePicker;
   const { t } = useTranslation();
+  const { options } = useBuildingDetector();
 
   const onFinish = (e) => {};
 
@@ -152,7 +153,7 @@ const VoucherUser = () => {
         label={t("empty_places.information.building_number")}
         name="buildingNumber"
       >
-        <Select disabled options={useSelectAPI()} />
+        <Select disabled options={options()} />
       </Form.Item>
       <Form.Item
         rules={[{ required: true }]}

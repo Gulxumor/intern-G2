@@ -1,15 +1,17 @@
 import { Button, DatePicker, Form, Input, Select } from "antd";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import useSelectAPI from "../../../../../../generic/SelectAPI";
 import { useAddUser } from "../../../../../../hooks/useQuery/useQueryActions";
 import { Wrapper } from "./style";
+import useBuildingDetector from "../../../../../../tools/buildingDetectors";
 
 const OridinaryUser = () => {
   const { selectedUser } = useSelector((state) => state.user);
   const { RangePicker } = DatePicker;
   const { t } = useTranslation();
   const { mutate } = useAddUser();
+  const { options } = useBuildingDetector();
+
   const onFinish = (e) => {
     const shouldAddData = {
       ...e,
@@ -118,7 +120,7 @@ const OridinaryUser = () => {
         label={t("empty_places.information.building_number")}
         name="buildingNumber"
       >
-        <Select disabled options={useSelectAPI()} />
+        <Select disabled options={options()} />
       </Form.Item>
       <Form.Item
         rules={[{ required: true }]}
