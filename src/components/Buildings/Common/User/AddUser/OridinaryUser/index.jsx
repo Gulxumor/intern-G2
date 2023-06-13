@@ -1,15 +1,18 @@
 import { Button, DatePicker, Form, Input, Select } from "antd";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useAddUser } from "../../../../../../hooks/useQuery/useQueryActions";
 import { Wrapper } from "./style";
 import useBuildingDetector from "../../../../../../tools/buildingDetectors";
+import { switchAddUserModalVisibility } from "../../../../../../redux/modalSlice";
 
 const OridinaryUser = () => {
   const { selectedUser } = useSelector((state) => state.user);
   const { RangePicker } = DatePicker;
   const { t } = useTranslation();
   const { mutate } = useAddUser();
+  const dispatch = useDispatch();
+  const { userAddModalVisibility } = useSelector((state) => state.modal);
   const { options } = useBuildingDetector();
 
   const onFinish = (e) => {
@@ -131,8 +134,24 @@ const OridinaryUser = () => {
       </Form.Item>
 
       <Wrapper.ButtonWrapper>
-        <Button>{t("empty_places.information.cancel")}</Button>
-        <Button htmlType="submit" type="primary">
+        <Button
+          disabled={userAddModalVisibility.loading}
+          onClick={() =>
+            dispatch(
+              switchAddUserModalVisibility({
+                open: false,
+                loading: false,
+              })
+            )
+          }
+        >
+          {t("empty_places.information.cancel")}
+        </Button>
+        <Button
+          loading={userAddModalVisibility.loading}
+          htmlType="submit"
+          type="primary"
+        >
           {t("empty_places.information.add")}
         </Button>
       </Wrapper.ButtonWrapper>

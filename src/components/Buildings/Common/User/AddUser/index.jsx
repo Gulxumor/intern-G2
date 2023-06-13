@@ -13,8 +13,17 @@ const AddUser = () => {
   const [modalType, setModalType] = useState(t("modal.oridinary"));
   return (
     <Modal
-      open={userAddModalVisibility}
-      onCancel={() => dispatch(switchAddUserModalVisibility())}
+      open={
+        userAddModalVisibility?.loading ? true : userAddModalVisibility?.open
+      }
+      onCancel={() =>
+        dispatch(
+          switchAddUserModalVisibility({
+            open: userAddModalVisibility?.loading ? true : false,
+            loading: userAddModalVisibility?.loading ? true : false,
+          })
+        )
+      }
       title={t("modal.add_booking")}
       okText={t("empty_places.information.add")}
       footer={false}
@@ -28,5 +37,5 @@ const AddUser = () => {
     </Modal>
   );
 };
-
+ 
 export default AddUser;

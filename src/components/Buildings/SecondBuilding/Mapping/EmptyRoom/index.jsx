@@ -28,7 +28,12 @@ const EmptyRoom = ({ roomValue, clienteValue }) => {
         dispatch(
           setSelectedUser({ buildingMutation: "2", roomValue, clienteValue })
         );
-        dispatch(switchAddUserModalVisibility());
+        dispatch(
+          switchAddUserModalVisibility({
+            open: true,
+            loading: false,
+          })
+        );
       },
     });
   };

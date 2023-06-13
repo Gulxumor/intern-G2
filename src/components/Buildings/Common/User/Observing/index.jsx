@@ -3,16 +3,29 @@ import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
+import { useDeleteUser } from "../../../../../hooks/useQuery/useQueryActions";
+import useBuildingDetector from "../../../../../tools/buildingDetectors";
 import EmptySpace from "../EmptySpace";
 import { Wrapper } from "./style";
 
 const Observing = () => {
+  const { decodeBuilding } = useBuildingDetector();
   const { selectedUser } = useSelector((state) => state.user);
-
   const queryClient = useQueryClient();
   const userData = queryClient.getQueryData(`user/${selectedUser.userID}`);
   const { t } = useTranslation();
-  
+  const { mutate } = useDeleteUser();
+
+  const deleteHandler = () => {
+    mutate({
+      body: {
+        roomNumber: selectedUser.roomValue.roomNumber,
+        clienteID: selectedUser.clienteValue.clienteID,
+        _id: selectedUser.userID,
+      },
+    });
+  };
+
   return (
     <Wrapper>
       {!selectedUser.userID ? (
@@ -134,7 +147,7 @@ const Observing = () => {
               {t("empty_places.information.building_number")}:
             </Wrapper.InfoWrap.Value>
             <Wrapper.InfoWrap.Value>
-              {userData?.buildingNumber.split("-").join(" ")}
+              {decodeBuilding(userData?.buildingNumber).label}
             </Wrapper.InfoWrap.Value>
           </Wrapper.InfoWrap>
           <Wrapper.InfoWrap>
@@ -148,8 +161,8 @@ const Observing = () => {
           <Wrapper.ButtonWrapper>
             <Button>{t("empty_places.information.cancel")}</Button>
             <Button type="primary">{t("empty_places.information.move")}</Button>
-            <Button danger type="primary">
-              {t("empty_places.information.edit")}
+            <Button onClick={deleteHandler} danger type="primary">
+              {t("empty_places.information.delete")}
             </Button>
           </Wrapper.ButtonWrapper>
         </>

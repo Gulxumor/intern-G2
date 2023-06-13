@@ -1,16 +1,30 @@
 import { Button, DatePicker, Form, Input, Select } from "antd";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Wrapper } from "./style";
 import useBuildingDetector from "../../../../../../tools/buildingDetectors";
+import { switchAddUserModalVisibility } from "../../../../../../redux/modalSlice";
 
 const VoucherUser = () => {
   const { selectedUser } = useSelector((state) => state.user);
   const { RangePicker } = DatePicker;
   const { t } = useTranslation();
   const { options } = useBuildingDetector();
+  const dispatch = useDispatch();
+  const { userAddModalVisibility } = useSelector((state) => state.modal);
 
-  const onFinish = (e) => {};
+  const onFinish = (e) => {
+    const shouldAddData = {
+      ...e,
+      birthDate: new Date(e.birthDate.$d).getTime(),
+      arrivalDate: new Date(e.range[0].$d).getTime(),
+      endDate: new Date(e.range[1].$d).getTime(),
+      clienteID: selectedUser.clienteValue.clienteID,
+      hasVoucher: true,
+      roomID: selectedUser.roomValue._id,
+    };
+    delete shouldAddData.range;
+  };
 
   return (
     <Form
@@ -104,7 +118,7 @@ const VoucherUser = () => {
           },
         ]}
         label={t("empty_places.information.voucher_cost")}
-        name="dayCost"
+        name="voucherCost"
       >
         <Input type="number" />
       </Form.Item>
@@ -117,7 +131,7 @@ const VoucherUser = () => {
           },
         ]}
         label={t("empty_places.information.voucher_number")}
-        name="voucher number"
+        name="voucherNumber"
       >
         <Input type="number" />
       </Form.Item>
@@ -130,7 +144,7 @@ const VoucherUser = () => {
           },
         ]}
         label={t("empty_places.information.work")}
-        name="work"
+        name="workPlace"
       >
         <Input />
       </Form.Item>
@@ -143,7 +157,7 @@ const VoucherUser = () => {
           },
         ]}
         label={t("empty_places.information.given_by")}
-        name="organization"
+        name="voucherOrganization"
       >
         <Input />
       </Form.Item>
@@ -164,8 +178,24 @@ const VoucherUser = () => {
       </Form.Item>
 
       <Wrapper.ButtonWrapper>
-        <Button>{t("empty_places.information.cancel")}</Button>
-        <Button htmlType="submit" type="primary">
+        <Button
+          disabled={userAddModalVisibility.loading}
+          onClick={() =>
+            dispatch(
+              switchAddUserModalVisibility({
+                open: false,
+                loading: false,
+              })
+            )
+          }
+        >
+          {t("empty_places.information.cancel")}
+        </Button>
+        <Button
+          loading={userAddModalVisibility.loading}
+          htmlType="submit"
+          type="primary"
+        >
           {t("empty_places.information.add")}
         </Button>
       </Wrapper.ButtonWrapper>

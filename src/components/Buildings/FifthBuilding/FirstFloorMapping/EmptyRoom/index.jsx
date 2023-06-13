@@ -23,7 +23,12 @@ const EmptyRoom = () => {
         dispatch(switchUserAddBookingModalVisibility());
       },
       onOk: () => {
-        dispatch(switchAddUserModalVisibility());
+        dispatch(
+          switchAddUserModalVisibility({
+            open: false,
+            loading: false,
+          })
+        );
       },
     });
   };
