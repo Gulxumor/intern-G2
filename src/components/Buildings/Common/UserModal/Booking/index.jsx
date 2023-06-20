@@ -1,23 +1,27 @@
-import { useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
+import BookedCard from "./BookedCard";
 import EmptyBooking from "./EmptyUI";
+import DetailedModal from "./DetailedModal";
+import { useQueryClient } from "react-query";
+import EditModal from "./EditModal";
 
 const Booking = () => {
   const { selectedUser } = useSelector((state) => state.user);
-
-  const cellID = selectedUser?.roomValue?.clienteValue?.clienteID;
-  const foundData = selectedUser?.roomValue?.roomValue?.bookedCliente?.find(
-    (value) => value.bookedClienteID === cellID
-  );
-
   const queryClient = useQueryClient();
-  const userData = queryClient.getQueryData(`user/${selectedUser.userData}`);
-
+  const building = queryClient.getQueryData("accomodation/2");
+  const cellID = selectedUser?.clienteValue?.clienteID;
+  const foundData = building[
+    selectedUser?.roomValue?.roomOrder
+  ]?.bookedCliente?.find((value) => value.bookedClienteID === cellID);
 
   return (
     <div>
-      {selectedUser?.roomValue?.clienteValue?.isBooked ? (
-        "hello"
+      <DetailedModal />
+      <EditModal />
+      {selectedUser?.clienteValue?.isBooked ? (
+        foundData?.bookedClienteList?.map((id) => (
+          <BookedCard key={id} id={id} />
+        ))
       ) : (
         <EmptyBooking />
       )}

@@ -17,20 +17,20 @@ const Mapping = () => {
   const data = queryClient.getQueryData("accomodation/2");
 
   const statusChecker = (clienteValue, roomValue) => {
-    if (clienteValue.isBooked)
-      return (
-        <BookedRoom
-          key={clienteValue.clienteID}
-          clienteValue={clienteValue}
-          roomValue={roomValue}
-        />
-      );
-    else if (clienteValue.userID)
+    if (clienteValue.userID || (clienteValue.isBooked && clienteValue.userID))
       return (
         <Room
           key={clienteValue.clienteID}
           roomValue={roomValue}
           clienteValue={clienteValue}
+        />
+      );
+    else if (clienteValue.isBooked)
+      return (
+        <BookedRoom
+          key={clienteValue.clienteID}
+          clienteValue={clienteValue}
+          roomValue={roomValue}
         />
       );
     else

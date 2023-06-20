@@ -1,4 +1,4 @@
-import React from "react";
+import { useTranslation } from "react-i18next";
 import { MenuWrapper } from "../Style";
 import { useDispatch } from "react-redux";
 import {
@@ -6,13 +6,16 @@ import {
   switchProfileModalVisibility,
 } from "../../redux/modalSlice";
 import {
+  EditOutlined,
+  DeleteOutlined,
   SettingOutlined,
   TranslationOutlined,
   LoginOutlined,
+  FileSearchOutlined,
+  // ContactsOutlined
 } from "@ant-design/icons";
-import { useTranslation } from "react-i18next";
 
-const useDropDownApi = () => {
+const useDropDownAPI = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const navbarDropDown = ({ logOutHandler }) => {
@@ -43,7 +46,37 @@ const useDropDownApi = () => {
       },
     ];
   };
-  return { navbarDropDown };
+
+  const bookedDropdown = ({ inDetail, onDelete, onEdit }) => {
+    return [
+      {
+        label: (
+          <MenuWrapper onClick={() => dispatch(inDetail)}>
+            <FileSearchOutlined /> {t("modal.detailed")}
+          </MenuWrapper>
+        ),
+        key: "0",
+      },
+      {
+        label: (
+          <MenuWrapper onClick={() => dispatch(onEdit)}>
+            <EditOutlined /> {t("empty_places.information.edit")}
+          </MenuWrapper>
+        ),
+        key: "1",
+      },
+      {
+        label: (
+          <MenuWrapper isDanger onClick={onDelete}>
+            <DeleteOutlined /> {t("empty_places.information.delete")}
+          </MenuWrapper>
+        ),
+        key: "2",
+      },
+    ];
+  };
+
+  return { navbarDropDown, bookedDropdown };
 };
 
-export default useDropDownApi;
+export default useDropDownAPI;

@@ -3,7 +3,7 @@ import { Room } from "../../../../../generic/Style";
 import { switchUserModalVisibility } from "../../../../../redux/modalSlice";
 import { setSelectedUser } from "../../../../../redux/userSlice";
 
-const BookedRoom = (roomValue, clienteValue) => {
+const BookedRoom = ({roomValue, clienteValue}) => {
   const dispatch = useDispatch();
 
   return (

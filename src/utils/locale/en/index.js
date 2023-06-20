@@ -7,6 +7,7 @@ export const en = {
         add_booking: "Add booking",
         oridinary: "Oridinary",
         voucher: "Voucher",
+        detailed:"Detailed",
         profileModal: {
             profile: "Profile",
             name: "Name",
@@ -91,6 +92,7 @@ export const en = {
         },
         booked_places: {
             error_message: "There is no any booked places!",
+            is_booked:"This place is booked",
         },
         edit: {
             date_range: "Date Range",

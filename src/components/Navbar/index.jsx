@@ -1,6 +1,6 @@
 import { Dropdown, Modal } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
-import useDropDownApi from "../../generic/DropDownApi";
+import useDropDownApi from "../../generic/DropDownAPI";
 import { Wrapper } from "./style";
 import UserModal from "./UserModal";
 import { useAuthUser, useSignOut } from "react-auth-kit";

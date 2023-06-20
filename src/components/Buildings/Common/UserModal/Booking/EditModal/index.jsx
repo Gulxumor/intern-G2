@@ -1,26 +1,23 @@
-import { Button, DatePicker, Form, Input, Modal } from "antd";
+import { DatePicker, Form, Input, Modal, Select } from "antd";
 import { useTranslation } from "react-i18next";
-// import { useQueryClient } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { switchUserAddBookingModalVisibility } from "../../../../../../redux/modalSlice";
-import { Wrapper } from "./style";
+import { switchEditModalVisibility } from "../../../../../../redux/modalSlice";
+import useBuildingDetector from "../../../../../../tools/buildingDetectors";
 
-const AddBooking = () => {
+const EditModal = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { userAddBookingModalVisibility } = useSelector((state) => state.modal);
-  const { selectedUser } = useSelector((state) => state.user);
+  const { editModalVisibility } = useSelector((state) => state.modal);
   const { RangePicker } = DatePicker;
-  // const queryClient = useQueryClient();
-  // const userData = queryClient.getQueryData(`user/${selectedUser.userID}`);
+  const { selectedUser } = useSelector((state) => state.user);
+  console.log(selectedUser);
+  const { options } = useBuildingDetector();
 
   return (
     <Modal
-      okText={t("empty_places.information.add")}
-      open={userAddBookingModalVisibility.open}
-      title={t("modal.add_booking")}
-      onCancel={() => dispatch(switchUserAddBookingModalVisibility())}
-      footer={false}
+      title="In edit"
+      open={editModalVisibility}
+      onCancel={() => dispatch(switchEditModalVisibility())}
     >
       <Form
         layout="vertical"
@@ -39,29 +36,43 @@ const AddBooking = () => {
           buildingNumber: `${t("all_users.building")}-${
             selectedUser.buildingMutation
           }`,
-          roomNumber: selectedUser.userID,
+          roomNumber: selectedUser.roomValue.roomNumber,
         }}
+        // onFinish={onFinish}
       >
         <Form.Item
           rules={[
             { required: true, message: t("empty_places.edit.name_error") },
           ]}
           label={t("empty_places.information.full_name")}
-          name="full name"
+          name="fullName"
         >
           <Input />
         </Form.Item>
-
         <Form.Item
           rules={[
-            { required: true, message: t("empty_places.edit.address_error") },
+            {
+              required: true,
+              message: t("empty_places.edit.birth_date_error"),
+            },
           ]}
-          name={"address"}
-          label={t("empty_places.information.address")}
+          label={t("empty_places.information.birth_date")}
+          name="birthDate"
+        >
+          <DatePicker />
+        </Form.Item>
+        <Form.Item
+          rules={[
+            {
+              required: true,
+              message: t("empty_places.edit.pass_number_error"),
+            },
+          ]}
+          label={t("empty_places.information.passport_number")}
+          name="passportID"
         >
           <Input />
         </Form.Item>
-
         <Form.Item
           rules={[
             {
@@ -70,7 +81,7 @@ const AddBooking = () => {
             },
           ]}
           label={t("empty_places.information.phone_number")}
-          name="phone number"
+          name="phoneNumber"
         >
           <Input addonBefore="+998" />
         </Form.Item>
@@ -86,44 +97,44 @@ const AddBooking = () => {
         >
           <RangePicker />
         </Form.Item>
-
+        <Form.Item
+          rules={[
+            { required: true, message: t("empty_places.edit.address_error") },
+          ]}
+          label={t("empty_places.information.address")}
+          name="address"
+        >
+          <Input />
+        </Form.Item>
         <Form.Item
           rules={[
             {
               required: true,
-              message: t("empty_places.edit.prepaid_error"),
+              message: t("empty_places.edit.daily_price_error"),
             },
           ]}
-          label={t("empty_places.information.prepaid")}
-          name="prepaid"
+          label={t("empty_places.information.daily_price")}
+          name="dayCost"
         >
           <Input type="number" />
         </Form.Item>
         <Form.Item
           rules={[{ required: true }]}
           label={t("empty_places.information.building_number")}
-          name="building number"
+          name="buildingNumber"
         >
-          {/* <Select disabled /> */}
-          <Input disabled />
+          <Select disabled options={options} />
         </Form.Item>
         <Form.Item
           rules={[{ required: true }]}
           label={t("empty_places.information.room_number")}
-          name="room number"
+          name="roomNumber"
         >
           <Input disabled />
         </Form.Item>
-
-        <Wrapper.ButtonWrapper>
-          <Button>{t("empty_places.information.cancel")}</Button>
-          <Button htmlType="submit" type="primary">
-            {t("empty_places.information.add")}
-          </Button>
-        </Wrapper.ButtonWrapper>
       </Form>
     </Modal>
   );
 };
 
-export default AddBooking;
+export default EditModal;

@@ -6,7 +6,7 @@ import { setSelectedUser } from "../../../../../redux/userSlice";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 
-const BookedRoom = (roomValue, clienteValue) => {
+const BookedRoom = ({roomValue, clienteValue}) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
