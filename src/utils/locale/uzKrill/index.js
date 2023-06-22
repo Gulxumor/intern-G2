@@ -8,6 +8,8 @@ export const uzKrill = {
     oridinary: "Оддий",
     voucher: "Воучер",
     detailed: "Detailed",
+    change_booking: "Брон ўзгаритиш",
+
     profileModal: {
       profile: "Профил",
       name: "Исм ",

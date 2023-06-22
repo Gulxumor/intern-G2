@@ -16,13 +16,15 @@ const EmptyRoom = ({ roomValue, clienteValue }) => {
 
   const onWarning = () => {
     return confirm({
+      closable: true,
       title: t("empty_places.information.empty_place_error"),
       content: t("empty_places.information.this_place_is_empty"),
-      closable: true,
       cancelText: t("empty_places.information.book"),
       okText: t("empty_places.information.add"),
       onCancel: () => {
-        dispatch(switchUserAddBookingModalVisibility());
+        dispatch(
+          switchUserAddBookingModalVisibility({ open: true, loading: false })
+        );
       },
       onOk: () => {
         dispatch(

@@ -9,6 +9,7 @@ import {
   switchEditModalVisibility,
 } from "../../../../../../redux/modalSlice";
 import { useDeleteBookedUser } from "../../../../../../hooks/useQuery/useQueryActions";
+import { setSelectedBookedUser } from "../../../../../../redux/userSlice";
 
 const BookedCard = ({ id }) => {
   const { mutate } = useDeleteBookedUser();
@@ -27,7 +28,10 @@ const BookedCard = ({ id }) => {
           <Dropdown
             menu={{
               items: bookedDropdown({
-                inDetail: () => dispatch(switchDetailedModalVisibility()),
+                inDetail: () => {
+                  dispatch(switchDetailedModalVisibility());
+                  dispatch(setSelectedBookedUser(data));
+                },
                 onEdit: () => dispatch(switchEditModalVisibility()),
                 onDelete: () => mutate({ body: data }),
               }),

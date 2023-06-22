@@ -102,7 +102,7 @@ const useAddUser = () => {
   const dispatch = useDispatch();
   const axios = useAxios();
   const addUserToCache = useAddUserToCache();
-  return (useMutation = ({ body }) => {
+  return useMutation(({ body }) => {
     dispatch(
       switchAddUserModalVisibility({
         open: true,
@@ -111,7 +111,7 @@ const useAddUser = () => {
     );
     return axios({
       method: "POST",
-      url: `accomodation/2/create-user`,
+      url: `/accomodation/2/create-user`,
       body,
     }).then(({ data }) => {
       dispatch(
@@ -121,7 +121,7 @@ const useAddUser = () => {
         })
       );
       addUserToCache({ userData: data.data });
-    });
+    }); 
   });
 };
 const useDeleteUser = () => {
@@ -137,7 +137,7 @@ const useDeleteUser = () => {
     });
   });
 };
-
+  
 // * Booked Users
 
 const useDeleteBookedUser = () => {

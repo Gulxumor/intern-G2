@@ -8,6 +8,9 @@ export const uzLotin = {
     oridinary: "Oddiy",
     voucher: "Voucher",
     detailed: "Detailed",
+    change_booking: "Bron o'zgaritish",
+
+
     profileModal: {
       profile: "Profil",
       name: "Ism",

@@ -8,12 +8,21 @@ const UserSlice = createSlice({
       buildingMutation: "",
       clienteValue: {},
     },
+    selectedBookedUser: {},
+    updateBookedUser: {},
   },
   reducers: {
     setSelectedUser(state, { payload }) {
       state.selectedUser = payload;
     },
+    setSelectedBookedUser(state, { payload }) {
+      state.selectedBookedUser = payload;
+    },
+    setUpdateBookedUser(state, { payload }) {
+      state.updateBookedUser = payload;
+    },
   },
 });
 export default UserSlice.reducer;
-export const { setSelectedUser } = UserSlice.actions;
+export const { setSelectedUser, setSelectedBookedUser, setUpdateBookedUser } =
+  UserSlice.actions;

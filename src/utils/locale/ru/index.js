@@ -8,6 +8,7 @@ export const ru = {
     oridinary: "Обычный",
     voucher: "Путевкой",
     detailed: "Detailed",
+    change_booking: "Изменить бронирование",
     profileModal: {
       profile: "Профиль",
       name: "Имя",
@@ -18,7 +19,7 @@ export const ru = {
     log_out_modal: {
       warning: "Предупреждение",
       are_u_sure: "Вы уверены",
-      log_out: "Выйти",
+      glog_out: "Выйти",
     },
   },
   home_page: {

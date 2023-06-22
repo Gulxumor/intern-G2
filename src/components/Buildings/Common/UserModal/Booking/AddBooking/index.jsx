@@ -19,7 +19,11 @@ const AddBooking = () => {
       okText={t("empty_places.information.add")}
       open={userAddBookingModalVisibility.open}
       title={t("modal.add_booking")}
-      onCancel={() => dispatch(switchUserAddBookingModalVisibility())}
+      onCancel={() =>
+        dispatch(
+          switchUserAddBookingModalVisibility({ open: false, loading: false })
+        )
+      }
       footer={false}
     >
       <Form

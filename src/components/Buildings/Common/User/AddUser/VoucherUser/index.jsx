@@ -167,7 +167,7 @@ const VoucherUser = () => {
         label={t("empty_places.information.building_number")}
         name="buildingNumber"
       >
-        <Select disabled options={options()} />
+        <Select disabled options={options} />
       </Form.Item>
       <Form.Item
         rules={[{ required: true }]}

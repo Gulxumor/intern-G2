@@ -16,7 +16,6 @@ const Cottage = ({ userID }) => {
   //     setLoading(false);
   //     setData(data.data.data);
 
-  //     console.log(data);
   //   });
   // }, []);
   return (
