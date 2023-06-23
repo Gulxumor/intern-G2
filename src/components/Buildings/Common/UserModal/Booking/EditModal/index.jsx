@@ -12,10 +12,8 @@ const EditModal = () => {
   const dispatch = useDispatch();
   const { editModalVisibility } = useSelector((state) => state.modal);
   const { selectedBookedUser } = useSelector((state) => state.user);
-  // console.log(selectedBookedUser, "selectedBookedUser");
   const { options } = useBuildingDetector();
   const { mutate } = useUpdatedUser();
-
   const updateBookedUser = (e) => {
     const formattedData = {
       ...selectedBookedUser,
@@ -24,7 +22,6 @@ const EditModal = () => {
       endDate: new Date(e.arrivalDate[1].$d).getTime(),
     };
     mutate(formattedData);
-    // notification({ type: "success", message: "Сохранено" });
     dispatch(switchEditModalVisibility());
   };
 
@@ -35,20 +32,19 @@ const EditModal = () => {
       onCancel={() => dispatch(switchEditModalVisibility())}
       footer={false}
     >
-      {" "}
       <Form
         layout="vertical"
         initialValues={{
-          fullName: selectedBookedUser.fullName,
-          address: selectedBookedUser.address,
-          phoneNumber: selectedBookedUser.phoneNumber,
+          fullName: selectedBookedUser?.fullName,
+          address: selectedBookedUser?.address,
+          phoneNumber: selectedBookedUser?.phoneNumber,
           arrivalDate: [
             dayjs(Number(selectedBookedUser?.arrivalDate)),
             dayjs(Number(selectedBookedUser?.endDate)),
           ],
-          prePaid: selectedBookedUser.prePaid,
-          buildingNumber: `${selectedBookedUser?.buildingNumber}`,
-          roomNumber: selectedBookedUser.roomNumber,
+          prePaid: selectedBookedUser?.prePaid,
+          buildingNumber: selectedBookedUser?.buildingNumber,
+          roomNumber: selectedBookedUser?.roomNumber,
         }}
         name="basic"
         labelCol={{
