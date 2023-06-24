@@ -1,17 +1,20 @@
-import { Room } from "../../../../../generic/Style";
-import { LoadingOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { useQueryHandler } from "../../../../../hooks/useQuery";
-import { switchUserModalVisibility } from "../../../../../redux/modalSlice";
-import { setSelectedUser } from "../../../../../redux/userSlice";
+import { Tooltip } from "antd";
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
+import { BookedTag, Room } from "../../../../../generic/Style";
+import { useQueryHandler } from "../../../../../hooks/useQuery";
+import { setSelectedUser } from "../../../../../redux/userSlice";
+import { LoadingOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import { switchUserModalVisibility } from "../../../../../redux/modalSlice";
 
-const Fourth = ({ clienteValue, roomValue }) => {
+const OccupiedRoom = ({ clienteValue, roomValue }) => {
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { data, isLoading } = useQueryHandler({
     queryKey: `user/${clienteValue.userID}`,
     queryLink: `/accomodation/4/user?_id=${clienteValue.userID}`,
   });
-  const dispatch = useDispatch();
   const roomClickDetector = () => {
     dispatch(switchUserModalVisibility());
     dispatch(
@@ -25,6 +28,17 @@ const Fourth = ({ clienteValue, roomValue }) => {
   };
   return (
     <Room color={"red"} onClick={() => roomClickDetector()}>
+      {clienteValue?.isBooked && (
+        <Tooltip
+          placement="top"
+          title={t("empty_places.booked_places.is_booked")}
+        >
+          <BookedTag color="warning">
+            <ExclamationCircleOutlined />
+          </BookedTag>
+        </Tooltip>
+      )}
+
       {isLoading ? (
         <LoadingOutlined />
       ) : (
@@ -34,4 +48,4 @@ const Fourth = ({ clienteValue, roomValue }) => {
   );
 };
 
-export default Fourth;
+export default OccupiedRoom;

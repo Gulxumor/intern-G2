@@ -1,54 +1,51 @@
-import { BookedTag, Room } from "../../../../../generic/Style";
 import dayjs from "dayjs";
-import {useQueryHandler} from "../../../../../hooks/useQuery";
-import { LoadingOutlined } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
-import { switchUserModalVisibility } from "../../../../../redux/modalSlice";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { setSelectedUser } from "../../../../../redux/userSlice";
 import { Tooltip } from "antd";
+import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { BookedTag, Room } from "../../../../../generic/Style";
+import { useQueryHandler } from "../../../../../hooks/useQuery";
+import { setSelectedUser } from "../../../../../redux/userSlice";
+import { LoadingOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import { switchUserModalVisibility } from "../../../../../redux/modalSlice";
 
-const RoomComponent = ({ roomValue, clienteValue }) => {
-  const { t } = useTranslation();
+const OccupiedRoom = ({ clienteValue, roomValue }) => {
   const dispatch = useDispatch();
-  const useQuery = useQueryHandler();
-
-  const { data, isLoading } = useQuery({
-    queryLink: `/accomodation/5-1/user?_id=${clienteValue?.userID}`,
-    queryKey: `user/${clienteValue?.userID}`,
+  const { t } = useTranslation();
+  const { data, isLoading } = useQueryHandler({
+    queryKey: `user/${clienteValue.userID}`,
+    queryLink: `/accomodation/5-1/user?_id=${clienteValue.userID}`,
   });
-
+  const roomClickDetector = () => {
+    dispatch(switchUserModalVisibility());
+    dispatch(
+      setSelectedUser({
+        userID: clienteValue.userID,
+        buildingMutation: "5-1",
+        clienteValue,
+        roomValue,
+      })
+    );
+  };
   return (
-    <Room
-      color={clienteValue.userID ? "red" : "processing"}
-      onClick={() => {
-        if (!isLoading) {
-          dispatch(switchUserModalVisibility());
-          dispatch(
-            setSelectedUser({
-              userID: clienteValue.userID,
-              buildingMutation: "5-1",
-              clienteValue,
-              roomValue,
-            })
-          );
-        }
-      }}
-    >
+    <Room color={"red"} onClick={() => roomClickDetector()}>
       {clienteValue?.isBooked && (
-        <Tooltip placement="top" title={t("booking.title")}>
+        <Tooltip
+          placement="top"
+          title={t("empty_places.booked_places.is_booked")}
+        >
           <BookedTag color="warning">
             <ExclamationCircleOutlined />
           </BookedTag>
         </Tooltip>
       )}
-      {isLoading && <LoadingOutlined />}
-      {!isLoading &&
-        clienteValue.userID &&
-        dayjs(Number(data?.endDate)).diff(new Date().toDateString(), "d")}
+
+      {isLoading ? (
+        <LoadingOutlined />
+      ) : (
+        dayjs(new Date(+data?.endDate)).diff(new Date(), "d")
+      )}
     </Room>
   );
 };
 
-export default RoomComponent;
+export default OccupiedRoom;

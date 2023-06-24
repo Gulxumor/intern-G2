@@ -1,12 +1,12 @@
-import { Room } from "../../../../../generic/Style";
-import { LoadingOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { useQueryHandler } from "../../../../../hooks/useQuery";
-import { useDispatch } from "react-redux";
-import { switchUserModalVisibility } from "../../../../../redux/modalSlice";
-import { setSelectedUser } from "../../../../../redux/userSlice";
 import { Tooltip } from "antd";
+import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { BookedTag, Room } from "../../../../../generic/Style";
+import { useQueryHandler } from "../../../../../hooks/useQuery";
+import { setSelectedUser } from "../../../../../redux/userSlice";
+import { LoadingOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
+import { switchUserModalVisibility } from "../../../../../redux/modalSlice";
 
 const OccupiedRoom = ({ clienteValue, roomValue }) => {
   const dispatch = useDispatch();
@@ -28,13 +28,17 @@ const OccupiedRoom = ({ clienteValue, roomValue }) => {
   };
   return (
     <Room color={"red"} onClick={() => roomClickDetector()}>
-      {clienteValue.isBooked && (
-        <Tooltip title={t("empty_places.booked_places.is_booked")}>
-          <Room.Info>
-            <InfoCircleOutlined />
-          </Room.Info>
+      {clienteValue?.isBooked && (
+        <Tooltip
+          placement="top"
+          title={t("empty_places.booked_places.is_booked")}
+        >
+          <BookedTag color="warning">
+            <ExclamationCircleOutlined />
+          </BookedTag>
         </Tooltip>
       )}
+
       {isLoading ? (
         <LoadingOutlined />
       ) : (

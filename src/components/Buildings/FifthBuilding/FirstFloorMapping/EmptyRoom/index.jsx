@@ -6,17 +6,19 @@ import {
   switchAddUserModalVisibility,
   switchUserAddBookingModalVisibility,
 } from "../../../../../redux/modalSlice";
+import { setSelectedUser } from "../../../../../redux/userSlice";
 
 const { confirm } = Modal;
 
-const EmptyRoom = () => {
+const EmptyRoom = ({ roomValue, clienteValue }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
   const onWarning = () => {
     return confirm({
+      closable: true,
       title: t("empty_places.information.empty_place_error"),
       content: t("empty_places.information.this_place_is_empty"),
-      closable: true,
       cancelText: t("empty_places.information.book"),
       okText: t("empty_places.information.add"),
       onCancel: () => {
@@ -24,15 +26,18 @@ const EmptyRoom = () => {
       },
       onOk: () => {
         dispatch(
+          setSelectedUser({ buildingMutation: "5-1", roomValue, clienteValue })
+        );
+        dispatch(
           switchAddUserModalVisibility({
-            open: false,
+            open: true,
             loading: false,
           })
         );
       },
     });
   };
-  return <Room color={"green"} onClick={onWarning}></Room>;
+  return <Room color={"green"} onClick={onWarning} />;
 };
 
 export default EmptyRoom;

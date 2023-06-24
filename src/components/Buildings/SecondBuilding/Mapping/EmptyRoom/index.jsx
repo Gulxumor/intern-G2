@@ -1,12 +1,12 @@
-import { Room } from "../../../../../generic/Style";
+import { Modal } from "antd";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Modal } from "antd";
+import { Room } from "../../../../../generic/Style";
+import { setSelectedUser } from "../../../../../redux/userSlice";
 import {
   switchAddUserModalVisibility,
   switchUserAddBookingModalVisibility,
 } from "../../../../../redux/modalSlice";
-import { setSelectedUser } from "../../../../../redux/userSlice";
 
 const { confirm } = Modal;
 
@@ -23,7 +23,10 @@ const EmptyRoom = ({ roomValue, clienteValue }) => {
       okText: t("empty_places.information.add"),
       onCancel: () => {
         dispatch(
-          switchUserAddBookingModalVisibility({ open: true, loading: false })
+          switchUserAddBookingModalVisibility({
+            open: true,
+            loading: false,
+          })
         );
       },
       onOk: () => {
@@ -40,7 +43,7 @@ const EmptyRoom = ({ roomValue, clienteValue }) => {
     });
   };
 
-  return <Room color={"green"} onClick={onWarning}></Room>;
+  return <Room color={"green"} onClick={onWarning} />;
 };
 
 export default EmptyRoom;
