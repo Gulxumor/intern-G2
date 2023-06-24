@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { LoadingOutlined } from "@ant-design/icons";
-import { Room } from "../../../../../../../../generic/Style";
-import { useQueryHandler } from "../../../../../../../../hooks/useQuery";
+import { Room } from "../../../../../../../generic/Style";
+import { useQueryHandler } from "../../../../../../../hooks/useQuery";
 
 const RoomComponent = (value) => {
   const { userID } = value;

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Wrapper } from "../../style";
-import RoomComponent from "../Common/Room";
 import { Modal, Select, Spin } from "antd";
-import { useTranslation } from "react-i18next";
 import { useQueryHandler } from "../../../../../../hooks/useQuery";
+import { useTranslation } from "react-i18next";
 import { useMoveUser } from "../../../../../../hooks/useQuery/useQueryActions";
+import RoomComponent from "../Common/Room";
 import {
   Room,
   RoomContainer,
@@ -14,12 +14,12 @@ import {
 
 const { confirm } = Modal;
 
-const SecondMoveBuilding = () => {
+const FifthMoveBuilding = () => {
   const { mutate } = useMoveUser();
   const [selectedRoom, setSelectedRoom] = useState(0);
   const { data, isLoading } = useQueryHandler({
-    queryKey: `accomodation/2`,
-    queryLink: `/accomodation/2/room`,
+    queryKey: `accomodation/5-1`,
+    queryLink: `/accomodation/5-2/room`,
   });
 
   const { t } = useTranslation();
@@ -33,7 +33,7 @@ const SecondMoveBuilding = () => {
         mutate({
           newRoomNumber: roomValue?.roomNumber,
           newClienteID: clienteValue?.clienteID,
-          newAccomodationID: `2`,
+          newAccomodationID: `5`,
           room_id: roomValue._id,
         }),
     });
@@ -88,4 +88,4 @@ const SecondMoveBuilding = () => {
   );
 };
 
-export default SecondMoveBuilding;
+export default FifthMoveBuilding;

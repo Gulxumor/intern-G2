@@ -1,25 +1,25 @@
 import { useState } from "react";
-import { Wrapper } from "../../style";
-import RoomComponent from "../Common/Room";
 import { Modal, Select, Spin } from "antd";
-import { useTranslation } from "react-i18next";
 import { useQueryHandler } from "../../../../../../hooks/useQuery";
+import { useTranslation } from "react-i18next";
 import { useMoveUser } from "../../../../../../hooks/useQuery/useQueryActions";
+import RoomComponent from "../Common/Room";
 import {
   Room,
   RoomContainer,
   RoomTitle,
   RoomWrapper,
 } from "../../../../../../generic/Style";
+import { Wrapper } from "../../style";
 
 const { confirm } = Modal;
 
-const SecondMoveBuilding = () => {
+const FouthMoveBuilding = () => {
   const { mutate } = useMoveUser();
   const [selectedRoom, setSelectedRoom] = useState(0);
   const { data, isLoading } = useQueryHandler({
-    queryKey: `accomodation/2`,
-    queryLink: `/accomodation/2/room`,
+    queryKey: `accomodation/4`,
+    queryLink: `/accomodation/4/room`,
   });
 
   const { t } = useTranslation();
@@ -33,7 +33,7 @@ const SecondMoveBuilding = () => {
         mutate({
           newRoomNumber: roomValue?.roomNumber,
           newClienteID: clienteValue?.clienteID,
-          newAccomodationID: `2`,
+          newAccomodationID: `4`,
           room_id: roomValue._id,
         }),
     });
@@ -63,7 +63,7 @@ const SecondMoveBuilding = () => {
         <>
           Select room:
           <Select
-            style={{ marginBottom: "20px" }}
+            style={{ marginBottom: "40px" }}
             onChange={(e) => setSelectedRoom(+e)}
             defaultValue={"0"}
             options={data.map(({ roomNumber, roomOrder }) => ({
@@ -88,4 +88,4 @@ const SecondMoveBuilding = () => {
   );
 };
 
-export default SecondMoveBuilding;
+export default FouthMoveBuilding;
