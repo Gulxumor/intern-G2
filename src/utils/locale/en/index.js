@@ -9,6 +9,8 @@ export const en = {
     voucher: "Voucher",
     detailed: "Detailed",
     change_booking: "Change booking",
+    do_u_want_to_move: "Do you want to move the user ?",
+    sure:"Sure",
 
     profileModal: {
       profile: "Profile",
@@ -20,6 +22,7 @@ export const en = {
     log_out_modal: {
       warning: "Warning",
       are_u_sure: "Are you sure",
+      log_out:"Log Out"
     },
   },
   home_page: {

@@ -9,7 +9,8 @@ export const uzLotin = {
     voucher: "Voucher",
     detailed: "Detailed",
     change_booking: "Bron o'zgaritish",
-
+    do_u_want_to_move: "Foydalanuvchini ko'chirmoqchimisiz ?",
+    sure: "Albatta",
 
     profileModal: {
       profile: "Profil",
@@ -20,7 +21,8 @@ export const uzLotin = {
     },
     log_out_modal: {
       warning: "Ogohlantirish",
-      are_u_sure: "Ishonchingiz komilmi ? ",
+      are_u_sure: "Ishonchingiz komilmi ?",
+      log_out: "Chiqish",
     },
   },
   home_page: {

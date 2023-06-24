@@ -9,6 +9,9 @@ export const ru = {
     voucher: "Путевкой",
     detailed: "Detailed",
     change_booking: "Изменить бронирование",
+    do_u_want_to_move: "Вы хотите переместить пользователя ?",
+    sure: "Я уверен",
+  
     profileModal: {
       profile: "Профиль",
       name: "Имя",
@@ -19,7 +22,7 @@ export const ru = {
     log_out_modal: {
       warning: "Предупреждение",
       are_u_sure: "Вы уверены",
-      glog_out: "Выйти",
+      log_out: "Выйти",
     },
   },
   home_page: {

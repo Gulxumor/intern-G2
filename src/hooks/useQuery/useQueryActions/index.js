@@ -15,7 +15,7 @@ const useUpdateUserFromCache = () => {
 }
 const useAddUserToCache = () => {
     const queryClient = useQueryClient()
-    return (userData) => {
+    return ({userData}) => {
         queryClient.setQueryData(`accomodation/2`, (oldQueryData) => oldQueryData.map(value => String(value.roomNumber) === String(userData.roomNumber) ?
             {
                 ...value, cliente: value.cliente.map(value => String(value.clienteID) === String(userData.clienteID) ? {
@@ -137,12 +137,49 @@ const useDeleteUser = () => {
     });
   });
 };
-  
+const useMoveUser = () => {
+  const queryClient = useQueryClient();
+  const deleteFromCache = useDeleteUserFromCache();
+  const { selectedUser } = useSelector((state) => state.user);
+  const updateUserFromCache = useUpdateUserFromCache();
+  const addUserToCache = useAddUserToCache();
+  const axios = useAxios();
+
+  const userValue = queryClient.getQueryData(
+    `user/${selectedUser.clienteValue.userID}`
+  );
+
+  return useMutation((data) => {
+    const shouldUpdatedData = {
+      ...userValue,
+      clienteID: data.newClienteID,
+      roomNumber: String(data.newRoomNumber),
+      buildingNumber: `building-${data.newAccomodationID}`,
+      roomID: data.room_id,
+    };
+
+    deleteFromCache({ userData: selectedUser });
+    updateUserFromCache({
+      id: selectedUser.clienteValue.userID,
+      shouldUpdatedData,
+    });
+    addUserToCache({ userData: shouldUpdatedData });
+    return axios({
+      url: `/accomodation/2/transfer-user`,
+      method: "POST",
+      body: {
+        oldRoomNumber: selectedUser.roomValue.roomNumber,
+        OldClienteID: selectedUser.clienteValue.clienteID,
+        _id: selectedUser.clienteValue.userID,
+        ...data,
+      },
+    });
+  });
+};
 // * Booked Users
 
 const useDeleteBookedUser = () => {
   const axios = useAxios();
-  //   const { selectedUser } = useSelector((state) => state.user);
   const deleteBookedUserFromCache = useDeleteBookedUserFromCache();
   return useMutation(({ body }) => {
     deleteBookedUserFromCache({ body });
@@ -154,4 +191,10 @@ const useDeleteBookedUser = () => {
   });
 };
 
-export { useUpdatedUser, useAddUser, useDeleteUser, useDeleteBookedUser };
+export {
+  useUpdatedUser,
+  useAddUser,
+  useDeleteUser,
+  useDeleteBookedUser,
+  useMoveUser,
+};

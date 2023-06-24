@@ -2,8 +2,9 @@ import { Button } from "antd";
 import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useDeleteUser } from "../../../../../hooks/useQuery/useQueryActions";
+import { switchMoveModalVisibility } from "../../../../../redux/modalSlice";
 import useBuildingDetector from "../../../../../tools/buildingDetectors";
 import EmptySpace from "../EmptySpace";
 import { Wrapper } from "./style";
@@ -25,7 +26,7 @@ const Observing = () => {
       },
     });
   };
-
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       {!selectedUser.userID ? (
@@ -160,7 +161,12 @@ const Observing = () => {
           </Wrapper.InfoWrap>
           <Wrapper.ButtonWrapper>
             <Button>{t("empty_places.information.cancel")}</Button>
-            <Button type="primary">{t("empty_places.information.move")}</Button>
+            <Button
+              onClick={() => dispatch(switchMoveModalVisibility())}
+              type="primary"
+            >
+              {t("empty_places.information.move")}
+            </Button>
             <Button onClick={deleteHandler} danger type="primary">
               {t("empty_places.information.delete")}
             </Button>

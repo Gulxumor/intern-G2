@@ -9,6 +9,8 @@ export const uzKrill = {
     voucher: "Воучер",
     detailed: "Detailed",
     change_booking: "Брон ўзгаритиш",
+    do_u_want_to_move: "Фойдаланувчини кўчирмоқчимисиз ?",
+    sure: "Албатта",
 
     profileModal: {
       profile: "Профил",
@@ -19,7 +21,7 @@ export const uzKrill = {
     },
     log_out_modal: {
       warning: "Огоҳлантириш",
-      are_u_sure: "Ишончингиз комилми",
+      are_u_sure: "Ишончингиз комилми ?",
       log_out: "Чиқиш ",
     },
   },
@@ -98,7 +100,7 @@ export const uzKrill = {
     },
     booked_places: {
       error_message: "Бронланган жойлар мавжуд емас!",
-      is_booked: "This place is booked",
+      is_booked: "Бу жой бронланган",
     },
 
     edit: {

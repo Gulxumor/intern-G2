@@ -7,6 +7,7 @@ import { useQueryHandler } from "../../../hooks/useQuery";
 import AddUser from "../Common/User/AddUser";
 import AddBooking from "../Common/UserModal/Booking/AddBooking";
 import Arrow from "../../../generic/Arrow";
+import Moving from "../Common/Moving";
 
 const SecondBuilding = () => {
   const { t } = useTranslation();
@@ -20,6 +21,7 @@ const SecondBuilding = () => {
     <Wrapper>
       <AddUser />
       <AddBooking />
+      <Moving />
       <Title>
         <Arrow />
         {`2 ${t("empty_places.building")}`}
