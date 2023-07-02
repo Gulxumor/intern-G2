@@ -18,12 +18,12 @@ const OridinaryUser = () => {
   const onFinish = (e) => {
     const shouldAddData = {
       ...e,
-      birthDate: new Date(e.birthDate.$d).getTime(),
-      arrivalDate: new Date(e.range[0].$d).getTime(),
-      endDate: new Date(e.range[1].$d).getTime(),
-      clienteID: selectedUser.clienteValue.clienteID,
+      birthDate: new Date(e.birthDate.$d)?.getTime(),
+      arrivalDate: new Date(e?.range[0]?.$d)?.getTime(),
+      endDate: new Date(e?.range[1]?.$d)?.getTime(),
+      clienteID: selectedUser?.clienteValue?.clienteID,
       hasVoucher: false,
-      roomID: selectedUser.roomValue._id,
+      roomID: selectedUser?.roomValue?._id,
     };
     delete shouldAddData.range;
     mutate({ body: shouldAddData });
@@ -47,7 +47,7 @@ const OridinaryUser = () => {
         buildingNumber: `${t("all_users.building")}-${
           selectedUser.buildingMutation
         }`,
-        roomNumber: selectedUser.roomValue.roomNumber,
+        roomNumber: selectedUser?.roomValue?.roomNumber,
       }}
       onFinish={onFinish}
     >

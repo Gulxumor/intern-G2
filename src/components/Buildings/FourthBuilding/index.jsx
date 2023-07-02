@@ -7,6 +7,7 @@ import { useQueryHandler } from "../../../hooks/useQuery";
 import AddUser from "../Common/User/AddUser";
 import AddBooking from "../Common/UserModal/Booking/AddBooking";
 import Arrow from "../../../generic/Arrow";
+import Moving from "../Common/Moving";
 
 const FourthBuilding = () => {
   const { t } = useTranslation();
@@ -18,10 +19,11 @@ const FourthBuilding = () => {
 
   return (
     <Wrapper>
-       <AddUser />
+      <AddUser />
       <AddBooking />
+      <Moving />
       <Title>
-        <Arrow/>
+        <Arrow />
         {`4 ${t("empty_places.building")}`}
       </Title>
       {isLoading ? <Spin /> : <Mapping />}

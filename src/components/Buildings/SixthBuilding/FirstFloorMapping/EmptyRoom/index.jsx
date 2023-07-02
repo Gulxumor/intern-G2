@@ -22,7 +22,12 @@ const EmptyRoom = ({ roomValue, clienteValue }) => {
       cancelText: t("empty_places.information.book"),
       okText: t("empty_places.information.add"),
       onCancel: () => {
-        dispatch(switchUserAddBookingModalVisibility());
+        dispatch(
+          switchUserAddBookingModalVisibility({
+            open: true,
+            loading: false,
+          })
+        );
       },
       onOk: () => {
         dispatch(
@@ -37,6 +42,7 @@ const EmptyRoom = ({ roomValue, clienteValue }) => {
       },
     });
   };
+
   return <Room color={"green"} onClick={onWarning} />;
 };
 

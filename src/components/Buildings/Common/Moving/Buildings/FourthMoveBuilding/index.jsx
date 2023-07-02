@@ -16,7 +16,7 @@ const { confirm } = Modal;
 
 const FouthMoveBuilding = () => {
   const { mutate } = useMoveUser();
-  const [selectedRoom, setSelectedRoom] = useState(0);
+  const [selectedRoom, setSelectedRoom] = useState();
   const { data, isLoading } = useQueryHandler({
     queryKey: `accomodation/4`,
     queryLink: `/accomodation/4/room`,

@@ -1,4 +1,3 @@
-import React from "react";
 import Card from "../../generic/Card";
 import all_users from "../../assets/icons/all_users.svg";
 import empty_place from "../../assets/icons/empty_place.svg";

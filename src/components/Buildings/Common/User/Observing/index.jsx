@@ -20,9 +20,9 @@ const Observing = () => {
   const deleteHandler = () => {
     mutate({
       body: {
-        roomNumber: selectedUser.roomValue.roomNumber,
-        clienteID: selectedUser.clienteValue.clienteID,
-        _id: selectedUser.userID,
+        roomNumber: selectedUser?.roomValue?.roomNumber,
+        clienteID: selectedUser?.clienteValue?.clienteID,
+        _id: selectedUser?.userID,
       },
     });
   };

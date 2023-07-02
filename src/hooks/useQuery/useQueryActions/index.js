@@ -6,41 +6,56 @@ import useAxios from "../../useAxios"
 //* Cache
 
 const useUpdateUserFromCache = () => {
-    const queryClient = useQueryClient()
-    return ({ id, shouldUpdatedData }) => {
-        queryClient.setQueryData(`user/${id}`, (oldQueryData) => {
-            return shouldUpdatedData
-        })
-    }
-}
+  const queryClient = useQueryClient();
+  return ({ id, shouldUpdatedData }) => {
+    queryClient.setQueryData(`user/${id}`, () => {
+      return shouldUpdatedData;
+    });
+  };
+};
 const useAddUserToCache = () => {
-    const queryClient = useQueryClient()
-    return ({userData}) => {
-        queryClient.setQueryData(`accomodation/2`, (oldQueryData) => oldQueryData.map(value => String(value.roomNumber) === String(userData.roomNumber) ?
-            {
-                ...value, cliente: value.cliente.map(value => String(value.clienteID) === String(userData.clienteID) ? {
-                    ...value,
-                    userID: userData._id
-                } : value)
-            }
+  const queryClient = useQueryClient();
+  return ({ userData }) => {
+    queryClient.setQueryData(
+      `accomodation/${userData.buildingMutation}`,
+      (oldQueryData) => {
+        oldQueryData.map((value) =>
+          String(value.roomNumber) === String(userData.roomNumber)
+            ? {
+                ...value,
+                cliente: value.cliente.map((value) =>
+                  String(value.clienteID) === String(userData.clienteID)
+                    ? {
+                        ...value,
+                        userID: userData._id,
+                      }
+                    : value
+                ),
+              }
             : value
-        )
-        )
-    }
-}
+        );
+      }
+    );
+  };
+};
 const useDeleteUserFromCache = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   return ({ userData }) => {
+    // console.log(userData.buildingMutation, "ssss");
     dispatch(switchUserModalVisibility());
-    userData = queryClient.getQueryData(`user/${userData.userID}`);
-    queryClient.setQueryData(`accomodation/2`, (oldQueryData) =>
-      oldQueryData.map((value) =>
-        String(value.roomNumber) === String(userData.roomNumber)
+    queryClient.getQueryData(`user/${userData.userID}`);
+    const accomoDationNumber = `accomodation/${userData.buildingMutation}`;
+    // console.log(accomoDationNumber);
+    queryClient.setQueryData(accomoDationNumber, (oldQueryData) => {
+      // console.log(oldQueryData, "fpund");
+      return oldQueryData.map((value) =>
+        String(value.roomNumber) === String(userData.roomValue.roomNumber)
           ? {
               ...value,
               cliente: value.cliente.map((value) =>
-                String(value.clienteID) === String(userData.clienteID)
+                String(value.clienteID) ===
+                String(userData.clienteValue.clienteID)
                   ? {
                       ...value,
                       userID: "",
@@ -49,8 +64,8 @@ const useDeleteUserFromCache = () => {
               ),
             }
           : value
-      )
-    );
+      );
+    });
   };
 };
 
@@ -58,29 +73,33 @@ const useDeleteUserFromCache = () => {
 
 const useDeleteBookedUserFromCache = () => {
   const queryClient = useQueryClient();
-
+  const { selectedUser } = useSelector((state) => state.user);
+  // console.log(selectedUser);
   return ({ body }) => {
-    queryClient.setQueryData("accomodation/2", (oldQueryData) => {
-      return oldQueryData.map((value) =>
-        String(value.roomNumber) === String(body.roomNumber)
-          ? {
-              ...value,
-              bookedCliente: value?.bookedCliente?.map((bookedClienteValue) =>
-                String(bookedClienteValue?.bookedClienteID) ===
-                String(body.clienteID)
-                  ? {
-                      ...bookedClienteValue,
-                      bookedClienteList:
-                        bookedClienteValue?.bookedClienteList?.filter(
-                          (id) => id !== body._id
-                        ),
-                    }
-                  : bookedClienteValue
-              ),
-            }
-          : value
-      );
-    });
+    queryClient.setQueryData(
+      `accomodation/${selectedUser.buildingMutation}`,
+      (oldQueryData) => {
+        return oldQueryData.map((value) =>
+          String(value.roomNumber) === String(selectedUser.roomValue.roomNumber)
+            ? {
+                ...value,
+                bookedCliente: value?.bookedCliente?.map((bookedClienteValue) =>
+                  String(bookedClienteValue?.bookedClienteID) ===
+                  String(selectedUser.clienteValue.clienteID)
+                    ? {
+                        ...bookedClienteValue,
+                        bookedClienteList:
+                          bookedClienteValue?.bookedClienteList?.filter(
+                            (id) => id !== selectedUser.userID
+                          ),
+                      }
+                    : bookedClienteValue
+                ),
+              }
+            : value
+        );
+      }
+    );
   };
 };
 
@@ -89,11 +108,12 @@ const useDeleteBookedUserFromCache = () => {
 const useUpdatedUser = () => {
   const axios = useAxios();
   const updateUserFromCache = useUpdateUserFromCache();
+  const { selectedUser } = useSelector((state) => state.user);
   return useMutation(({ body }) => {
     updateUserFromCache({ id: body._id, shouldUpdatedData: body });
     return axios({
       method: "POST",
-      url: `/accomodation/2/update-user`,
+      url: `/accomodation/${selectedUser.buildingMutation}/update-user`,
       body,
     });
   });
@@ -102,6 +122,7 @@ const useAddUser = () => {
   const dispatch = useDispatch();
   const axios = useAxios();
   const addUserToCache = useAddUserToCache();
+  const { selectedUser } = useSelector((state) => state.user);
   return useMutation(({ body }) => {
     dispatch(
       switchAddUserModalVisibility({
@@ -111,7 +132,7 @@ const useAddUser = () => {
     );
     return axios({
       method: "POST",
-      url: `/accomodation/2/create-user`,
+      url: `/accomodation/${selectedUser.buildingMutation}/create-user`,
       body,
     }).then(({ data }) => {
       dispatch(
@@ -121,17 +142,18 @@ const useAddUser = () => {
         })
       );
       addUserToCache({ userData: data.data });
-    }); 
+    });
   });
 };
 const useDeleteUser = () => {
   const axios = useAxios();
   const { selectedUser } = useSelector((state) => state.user);
   const deleteFromCache = useDeleteUserFromCache();
+  // console.log(selectedUser);
   return useMutation(({ body }) => {
     deleteFromCache({ userData: selectedUser });
     axios({
-      url: `accomodation/2/delete-user`,
+      url: `/accomodation/${selectedUser.buildingMutation}/delete-user`,
       method: "DELETE",
       body,
     });
@@ -165,7 +187,7 @@ const useMoveUser = () => {
     });
     addUserToCache({ userData: shouldUpdatedData });
     return axios({
-      url: `/accomodation/2/transfer-user`,
+      url: `/accomodation/${selectedUser.buildingMutation}/transfer-user`,
       method: "POST",
       body: {
         oldRoomNumber: selectedUser.roomValue.roomNumber,
@@ -180,11 +202,12 @@ const useMoveUser = () => {
 
 const useDeleteBookedUser = () => {
   const axios = useAxios();
+  const { selectedUser } = useSelector((state) => state.user);
   const deleteBookedUserFromCache = useDeleteBookedUserFromCache();
   return useMutation(({ body }) => {
     deleteBookedUserFromCache({ body });
     return axios({
-      url: `/accomodation/2/delete-booked-user`,
+      url: `/accomodation/${selectedUser.buildingMutation}/delete-booked-user`,
       method: "DELETE",
       body,
     });

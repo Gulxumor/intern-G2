@@ -19,7 +19,7 @@ const OccupiedRoom = ({ clienteValue, roomValue }) => {
     dispatch(switchUserModalVisibility());
     dispatch(
       setSelectedUser({
-        userID: clienteValue.userID,
+        userID: clienteValue?.userID,
         buildingMutation: "3",
         clienteValue,
         roomValue,

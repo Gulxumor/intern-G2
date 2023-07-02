@@ -1,81 +1,65 @@
-import { Alert } from "antd";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "react-query";
-import EmptyRoom from "./EmptyRoom";
 import BookedRoom from "./BookedRoom";
+import EmptyRoom from "./EmptyRoom";
 import Room from "./Room";
 import {
   MainRoomWrapper,
   RoomContainer,
   RoomTitle,
   RoomWrapper,
-  FloorTitle,
-  MenuWrapper,
 } from "../../../../generic/Style";
+import UserModal from "../../Common/UserModal";
 
-const FirstFloorMapping = () => {
+const Mapping = () => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   const data = queryClient.getQueryData("accomodation/6-1");
 
+  const statusChecker = (clienteValue, roomValue) => {
+    if (clienteValue.userID || (clienteValue.isBooked && clienteValue.userID))
+      return (
+        <Room
+          key={clienteValue.clienteID}
+          roomValue={roomValue}
+          clienteValue={clienteValue}
+        />
+      );
+    else if (clienteValue.isBooked)
+      return (
+        <BookedRoom
+          key={clienteValue.clienteID}
+          clienteValue={clienteValue}
+          roomValue={roomValue}
+        />
+      );
+    else
+      return (
+        <EmptyRoom
+          key={clienteValue.clienteID}
+          roomValue={roomValue}
+          clienteValue={clienteValue}
+        />
+      );
+  };
+
   return (
-    <MenuWrapper>
-      <MainRoomWrapper floor>
-        <FloorTitle>1 {t("empty_places.buildingFloor.floor")}</FloorTitle>
-        {!data && <Alert message="Сервер не может ответить!" type="error" />}
-        <>
-          {data?.map((roomValue) => (
-            <RoomWrapper key={roomValue?._id}>
-              <RoomTitle>
-                {roomValue?.roomNumber} {t("all_users.room")}
-              </RoomTitle>
-              <RoomContainer>
-                {roomValue?.cliente?.map((value, index) =>
-                  !value.userID && !value.isBooked ? (
-                    <EmptyRoom
-                      key={value?.clienteID}
-                      clienteValue={{
-                        ...value,
-                        roomNumber: roomValue?.roomNumber,
-                        roomOrder: roomValue?.roomOrder,
-                        roomID: roomValue._id,
-                        bookedCliente: roomValue?.bookedCliente[index],
-                        cliente: roomValue?.cliente[index],
-                      }}
-                    />
-                  ) : value.userID ? (
-                    <Room
-                      key={value?.clienteID}
-                      clienteValue={{
-                        ...value,
-                        roomNumber: roomValue?.roomNumber,
-                        roomOrder: roomValue?.roomOrder,
-                        roomID: roomValue._id,
-                        bookedCliente: roomValue?.bookedCliente[index],
-                        cliente: roomValue?.cliente[index],
-                      }}
-                    />
-                  ) : (
-                    <BookedRoom
-                      key={value?.clienteID}
-                      clienteValue={{
-                        ...value,
-                        roomNumber: roomValue?.roomNumber,
-                        roomOrder: roomValue?.roomOrder,
-                        roomID: roomValue._id,
-                        bookedCliente: roomValue?.bookedCliente[index],
-                        cliente: roomValue?.cliente[index],
-                      }}
-                    />
-                  )
-                )}
-              </RoomContainer>
-            </RoomWrapper>
-          ))}
-        </>
-      </MainRoomWrapper>
-    </MenuWrapper>
+    <MainRoomWrapper>
+      <UserModal />
+      {data?.map((roomValue) => (
+        <RoomWrapper key={roomValue._id}>
+          <RoomTitle>{`${roomValue.roomNumber} ${t(
+            "empty_places.room"
+          )}`}</RoomTitle>
+          <RoomContainer>
+            {roomValue.cliente?.map((clienteValue) =>
+              statusChecker(clienteValue, roomValue)
+            )}
+          </RoomContainer>
+        </RoomWrapper>
+      ))}
+    </MainRoomWrapper>
   );
 };
 
-export default FirstFloorMapping;
+export default Mapping;

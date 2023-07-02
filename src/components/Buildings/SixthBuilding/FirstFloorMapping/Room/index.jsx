@@ -3,10 +3,10 @@ import { Tooltip } from "antd";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { BookedTag, Room } from "../../../../../generic/Style";
-import { useQueryHandler } from "../../../../../hooks/useQuery";
 import { setSelectedUser } from "../../../../../redux/userSlice";
 import { LoadingOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 import { switchUserModalVisibility } from "../../../../../redux/modalSlice";
+import { useQueryHandler } from "../../../../../hooks/useQuery";
 
 const OccupiedRoom = ({ clienteValue, roomValue }) => {
   const dispatch = useDispatch();

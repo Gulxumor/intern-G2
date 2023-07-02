@@ -7,6 +7,7 @@ import Mapping from "./Mapping";
 import AddUser from "../Common/User/AddUser";
 import AddBooking from "../Common/UserModal/Booking/AddBooking";
 import Arrow from "../../../generic/Arrow";
+import Moving from "../Common/Moving";
 
 const ThirdBuilding = () => {
   const { t } = useTranslation();
@@ -20,6 +21,7 @@ const ThirdBuilding = () => {
     <Wrapper>
       <AddUser />
       <AddBooking />
+      <Moving />
       <Title>
         <Arrow />
         {`3 ${t("empty_places.building")}`}

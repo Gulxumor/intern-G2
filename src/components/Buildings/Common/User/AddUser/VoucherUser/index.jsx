@@ -16,16 +16,16 @@ const VoucherUser = () => {
   const onFinish = (e) => {
     const shouldAddData = {
       ...e,
-      birthDate: new Date(e.birthDate.$d).getTime(),
-      arrivalDate: new Date(e.range[0].$d).getTime(),
-      endDate: new Date(e.range[1].$d).getTime(),
-      clienteID: selectedUser.clienteValue.clienteID,
+      birthDate: new Date(e?.birthDate?.$d)?.getTime(),
+      arrivalDate: new Date(e?.range[0]?.$d)?.getTime(),
+      endDate: new Date(e?.range[1]?.$d)?.getTime(),
+      clienteID: selectedUser?.clienteValue?.clienteID,
       hasVoucher: true,
-      roomID: selectedUser.roomValue._id,
+      roomID: selectedUser?.roomValue?._id,
     };
     delete shouldAddData.range;
   };
-
+  console.log(selectedUser, "selele");
   return (
     <Form
       layout="vertical"
@@ -42,9 +42,9 @@ const VoucherUser = () => {
       }}
       initialValues={{
         buildingNumber: `${t("all_users.building")}-${
-          selectedUser.buildingMutation
+          selectedUser?.buildingMutation
         }`,
-        roomNumber: selectedUser.roomValue.roomNumber,
+        roomNumber: selectedUser?.roomValue?.roomNumber,
       }}
       onFinish={onFinish}
     >

@@ -9,6 +9,7 @@ import SecondFloorMapping from "./SecondFloorMapping";
 import AddUser from "../Common/User/AddUser";
 import AddBooking from "../Common/UserModal/Booking/AddBooking";
 import Arrow from "../../../generic/Arrow";
+import Moving from "../Common/Moving";
 
 const FifthBuilding = () => {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ const FifthBuilding = () => {
       <AddUser />
       <AddBooking />
       <UserModal />
+      <Moving />
       <Title>
         <Arrow />
         {`5 ${t("empty_places.building")}`}
